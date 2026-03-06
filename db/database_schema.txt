@@ -1,0 +1,71 @@
+-- ============================================
+-- DATABASE SCHEMA - GEOGRAPHIC INFROMATION SISTEM
+-- ============================================
+
+-- Tabel KATEGORI
+CREATE TABLE KATEGORI (
+    id_kategori INT PRIMARY KEY AUTO_INCREMENT,
+    nama_kategori VARCHAR(100) NOT NULL
+);
+
+-- Tabel FASILITAS
+CREATE TABLE FASILITAS (
+    id_fasilitas INT PRIMARY KEY AUTO_INCREMENT,
+    nama_fasilitas VARCHAR(100) NOT NULL
+);
+
+-- Tabel OBJEK_WISATA
+CREATE TABLE OBJEK_WISATA (
+    id_wisata INT PRIMARY KEY AUTO_INCREMENT,
+    nama_wisata VARCHAR(150) NOT NULL,
+    deskripsi_wisata TEXT,
+    latitude_wisata DECIMAL(10, 8),
+    longitude_wisata DECIMAL(11, 8),
+    alamat_wisata VARCHAR(255),
+    nama_kecamatan_wisata VARCHAR(100),
+    jam_operasional_wisata VARCHAR(100),
+    harga_tiket_wisata DECIMAL(10, 2),
+    kontak_wisata VARCHAR(50),
+    website_resmi_wisata VARCHAR(255),
+    url_gambar_wisata VARCHAR(255),
+    id_kategori INT,
+    FOREIGN KEY (id_kategori) REFERENCES KATEGORI(id_kategori)
+);
+
+-- Tabel OBJEK_WISATA_FASILITAS (tabel relasi many-to-many)
+CREATE TABLE OBJEK_WISATA_FASILITAS (
+    id_objek_wisata INT NOT NULL,
+    id_fasilitas INT NOT NULL,
+    PRIMARY KEY (id_objek_wisata, id_fasilitas),
+    FOREIGN KEY (id_objek_wisata) REFERENCES OBJEK_WISATA(id_wisata),
+    FOREIGN KEY (id_fasilitas) REFERENCES FASILITAS(id_fasilitas)
+);
+
+-- Tabel ADMIN
+CREATE TABLE ADMIN (
+    id_admin INT PRIMARY KEY AUTO_INCREMENT,
+    username_admin VARCHAR(100) NOT NULL UNIQUE,
+    password_admin VARCHAR(255) NOT NULL,
+    nama_lengkap_admin VARCHAR(150),
+    email_admin VARCHAR(150)
+);
+
+-- Tabel PENGGUNA
+CREATE TABLE PENGGUNA (
+    id_pengguna INT PRIMARY KEY AUTO_INCREMENT,
+    nama_pengguna VARCHAR(150) NOT NULL,
+    alamat_pengguna VARCHAR(255),
+    no_tlp_pengguna VARCHAR(20),
+    email_pengguna VARCHAR(150)
+);
+
+-- Tabel KRITIK_SARAN
+CREATE TABLE KRITIK_SARAN (
+    id_saran INT PRIMARY KEY AUTO_INCREMENT,
+    nama_pengirim_saran VARCHAR(150),
+    email_pengirim_saran VARCHAR(150),
+    pesan_saran TEXT,
+    tanggal_kirim_saran DATE,
+    id_pengguna INT,
+    FOREIGN KEY (id_pengguna) REFERENCES PENGGUNA(id_pengguna)
+);

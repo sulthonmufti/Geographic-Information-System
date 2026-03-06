@@ -1,0 +1,1390 @@
+/**
+ * =============================================================================
+ * PENGATURAN FONT GLOBAL
+ * Mengimpor font Poppins dari Google Fonts untuk digunakan di seluruh halaman.
+ * =============================================================================
+ */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/**
+ * =============================================================================
+ * VARIABEL CSS (CUSTOM PROPERTIES)
+ * Mendefinisikan warna dasar yang akan digunakan kembali di various bagian CSS
+ * untuk kemudahan pengelolaan dan konsistensi tema.
+ * =============================================================================
+ */
+:root {
+    --primary-color: #e50914; /* Merah asli */
+    --hover-color: #DF2929; /* Warna hover baru */
+    --text-color-light: #ffffff;
+    --text-color-dark: #333333;
+    --background-dark: #000000;
+    --link-hover-color: #ccc;
+    --header-bg-opacity: rgba(0, 0, 0, 0.9);
+    --header-height: 80px; /* Variabel untuk tinggi header yang diperkirakan */
+    --footer-height: 60px; /* Perkiraan tinggi footer, sesuaikan jika beda */
+    --horizontal-padding: 20px;
+}
+
+/**
+ * =============================================================================
+ * RESET CSS DAN PENGATURAN DASAR BODY
+ * Mengatur ulang margin, padding, dan box-sizing untuk konsistensi antar browser.
+ * Mengatur font dan warna teks dasar untuk seluruh body dokumen.
+ * =============================================================================
+ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color-dark);
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding-top: var(--header-height); /* TETAPKAN INI UNTUK MENDORONG KONTEN KE BAWAH HEADER */
+    overflow-x: hidden; /* Mencegah overflow horizontal */
+}
+
+/* Kelas untuk mencegah scrolling pada body, digunakan saat menu mobile aktif */
+.no-scroll {
+    overflow: hidden;
+}
+
+/**
+ * =============================================================================
+ * PENGATURAN KONTAINER UMUM
+ * Mengatur lebar maksimum dan penengahan konten untuk layout yang rapi.
+ * Digunakan di dalam header untuk menampung logo dan navigasi.
+ * =============================================================================
+ */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%; /* Pastikan container mengisi tinggi parentnya */
+}
+
+/**
+ * =============================================================================
+ * STYLING HEADER UTAMA
+ * Mengatur tampilan background, warna teks, padding, dan posisi header.
+ * =============================================================================
+ */
+.main-header {
+    background-color: var(--header-bg-opacity);
+    color: var(--text-color-light);
+    position: fixed; /* Membuat header tetap pada posisi tertentu di viewport */
+    width: 100%;     /* Memastikan header membentang selebar viewport */
+    top: 0;          /* Memposisikan header di bagian paling atas */
+    left: 0;         /* Memposisikan header di bagian paling kiri */
+    z-index: 1000;   /* Pastikan header di atas elemen lain, termasuk peta */
+    height: var(--header-height); /* Berikan tinggi eksplisit untuk header fixed */
+}
+
+/**
+ * =============================================================================
+ * STYLING LOGO DAN TEKS LOGO
+ * Mengatur tampilan logo gambar dan teks yang menyertainya.
+ * =============================================================================
+ */
+.logo-container {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--text-color-light);
+}
+
+.logo {
+    height: 50px;
+    margin-right: 15px;
+}
+
+.logo-text p {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.2;
+}
+
+/**
+ * =============================================================================
+ * STYLING NAVIGASI UTAMA (DESKTOP)
+ * Mengatur tampilan daftar menu navigasi untuk tampilan desktop.
+ * =============================================================================
+ */
+.main-nav {
+    display: flex;
+    align-items: center;
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    margin-right: 30px;
+}
+
+.main-nav ul li {
+    margin-left: 30px;
+}
+
+.main-nav ul li a {
+    color: var(--text-color-light);
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 16px;
+    padding-bottom: 3px;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.main-nav ul li a:hover,
+.main-nav ul li a.active {
+    color: var(--hover-color);
+    transform: translateY(-2px);
+}
+
+/**
+ * =============================================================================
+ * STYLING TOMBOL LOGIN
+ * Mengatur tampilan tombol login di header.
+ * =============================================================================
+ */
+.login-button {
+    background-color: var(--primary-color);
+    color: var(--text-color-light);
+    padding: 8px 16px;
+    border-radius: 15px;
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.login-button:hover {
+    transform: translateY(-2px);
+    background-color: var(--text-color-light);
+    color: var(--hover-color);
+    border-color: var(--hover-color);
+}
+
+/**
+ * =============================================================================
+ * STYLING HAMBURGER MENU ICON
+ * Mengatur tampilan tombol hamburger yang hanya terlihat di layar kecil.
+ * =============================================================================
+ */
+.hamburger-menu {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text-color-light);
+    font-size: 1.8em;
+    cursor: pointer;
+}
+
+/**
+ * =============================================================================
+ * STYLING OVERLAY NAVIGASI MOBILE
+ * Mengatur tampilan overlay layar penuh yang muncul saat menu hamburger diklik.
+ * =============================================================================
+ */
+.mobile-nav-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 999; 
+}
+
+.mobile-nav-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/**
+ * =============================================================================
+ * STYLING MENU DI DALAM OVERLAY NAVIGASI MOBILE
+ * Mengatur tampilan daftar menu yang ada di dalam overlay.
+ * =============================================================================
+ */
+.mobile-nav-menu {
+    text-align: center;
+    padding: 20px;
+    width: 80%;
+}
+
+.mobile-nav-menu ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 30px;
+}
+
+.mobile-nav-menu ul li {
+    margin-bottom: 25px;
+}
+
+.mobile-nav-menu ul li a {
+    color: var(--text-color-light);
+    text-decoration: none;
+    font-size: 1.6em;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.mobile-nav-menu ul li a:hover {
+    color: var(--link-hover-color);
+}
+
+/**
+ * =============================================================================
+ * STYLING TOMBOL LOGIN MOBILE
+ * Mengatur tampilan tombol login saat di dalam menu mobile.
+ * =============================================================================
+ */
+.mobile-login-button {
+    background-color: var(--primary-color);
+    color: var(--text-color-light);
+    padding: 15px 30px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.4em;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.mobile-login-button:hover {
+    background-color: #c70811;
+}
+
+/**
+ * =============================================================================
+ * STYLING KONTEN UTAMA (DEMONSTRASI)
+ * Gaya dasar untuk area konten utama halaman.
+ * =============================================================================
+ */
+main {
+    flex-grow: 1;
+    /* Menghapus padding-top karena body sudah memiliki padding-top untuk header */
+    padding-left: 20px; /* Padding horizontal */
+    padding-right: 20px; /* Padding horizontal */
+    padding-bottom: 40px; /* Padding bawah untuk konten di main */
+    text-align: center;
+    
+    background-image: url('../gambar/background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    z-index: 0;
+}
+
+/* Pseudo-element untuk mengatur opacity pada background image */
+main::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.75);
+    z-index: -1; 
+}
+
+/* =============================================================================
+ * STYLING KHUSUS UNTUK PETA LEAFLET
+ * ============================================================================= */
+#map-section {
+    grid-area: map;
+    /* Mengurangi margin-top untuk mendekatkan peta ke header */
+    margin-top: 20px; 
+    margin-bottom: 20px; /* Margin bawah untuk spasi dengan paragraf di bawahnya */
+
+    /* Kalkulasi tinggi peta untuk desktop:
+       100vh - tinggi_header - tinggi_footer - total_margin_vertical_peta - padding_bottom_main
+       80px = margin-top (20px) + margin-bottom (20px) dari #map-section + padding-bottom (40px) dari main
+    */
+    height: calc(100vh - var(--header-height) - var(--footer-height) - 80px); 
+
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative; 
+    z-index: 1; 
+}
+
+#mapid {
+    flex-grow: 1;
+    height: 100%;
+    width: 100%;
+    border-radius: 8px;
+}
+
+/* Pastikan elemen p dalam main tidak mengganggu tata letak peta */
+main > p {
+    margin-top: 20px; /* Memberi jarak antara peta dan paragraf "coming soon" */
+}
+
+/**
+ * =============================================================================
+ * STYLING FOOTER
+ * Mengatur tampilan dan posisi footer di bagian bawah halaman.
+ * =============================================================================
+ */
+.footer {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 20px 40px;
+    font-size: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 5;
+    min-height: var(--footer-height); 
+}
+
+/* Mengatur perataan teks untuk elemen anak langsung di dalam footer */
+.footer > div:first-child {
+    text-align: left;
+}
+
+.footer > div:last-child {
+    text-align: right;
+}
+
+/* Media query untuk footer pada layar kecil (mobile dan tablet) */
+@media (max-width: 768px) {
+    .footer {
+        flex-direction: column; /* Ini akan membuat div bertumpuk atas-bawah */
+        text-align: center; /* Memastikan teks di tengah saat bertumpuk */
+        padding: 20px;
+    }
+
+    .footer > div {
+        width: 100%; /* Memastikan setiap div mengambil lebar penuh */
+        text-align: center; /* Memastikan teks di tengah */
+        margin-bottom: 10px; /* Memberi sedikit jarak antar div */
+    }
+
+    /* Menimpa (override) aturan text-align untuk first-child dan last-child agar rata tengah */
+    .footer > div:first-child,
+    .footer > div:last-child {
+        text-align: center; /* KUNCI PERUBAHAN: Membuat teks rata tengah */
+    }
+
+    .footer > div:last-child {
+        margin-bottom: 0; /* Hapus margin bawah untuk div terakhir */
+    }
+
+}
+
+/* =========================================================================
+   Leaflet Popup Custom Styling
+   ========================================================================= */
+
+.leaflet-popup-content-wrapper {
+    border-radius: 15px !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    overflow: hidden;
+}
+
+.wisata-popup .leaflet-popup-content {
+    padding: 5px !important;
+    margin: 0;
+}
+
+.leaflet-popup-content-wrapper:not(.wisata-popup) .leaflet-popup-content {
+    padding: 5px 20px 5px 5px;
+    margin: 0;
+}
+
+.wisata-popup .leaflet-popup-close-button {
+    top: -10px !important; 
+    right: -10px !important;
+    background-color: #cacccb !important; 
+    border-radius: 50% !important;
+    width: 30px !important;
+    height: 30px !important;
+    line-height: 30px !important;
+    text-align: center !important;
+    font-size: 16px !important;
+    color: #333 !important;
+    font-weight: bold;
+    padding: 0 !important;
+    z-index: 1001; 
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.popup-btn {
+    flex-grow: 1;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.popup-btn.btn-rute {
+    background-color: #FFC107;
+    color: #000;
+}
+
+.popup-btn.btn-lihat {
+    background-color: #28A745;
+    color: #fff;
+}
+
+.popup-btn:hover {
+    transform: translateY(-3px);
+    filter: brightness(0.85);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* =========================================================================
+   Custom Marker Icons for Leaflet (using Font Awesome Kits)
+   ========================================================================= */
+.leaflet-marker-icon.custom-marker-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    overflow: hidden;
+    border-radius: 50%;
+    width: 20px !important; /* Disesuaikan dengan iconSize di JS */
+    height: 20px !important; /* Disesuaikan dengan iconSize di JS */
+    margin-left: -10px !important; /* Disesuaikan dengan iconAnchor di JS */
+    margin-top: -20px !important; /* Disesuaikan dengan iconAnchor di JS */
+}
+
+.custom-marker-icon > div { /* Menargetkan div langsung di dalam .custom-marker-icon */
+    width: 100%; /* Memastikan div ini mengisi penuh parentnya */
+    height: 100%; /* Memastikan div ini mengisi penuh parentnya */
+    border-radius: 50%; /* Penting agar div ini juga bulat */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Background-color akan dari inline style JS */
+}
+
+.custom-marker-icon i {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.custom-marker-icon i svg {
+    width: 14px !important;
+    height: 14px !important;
+    fill: white !important;
+}
+
+/*
+.marker-wisata-buatan { // background-color: #F24A44; border: 1.5px solid #F24A44;  }
+.marker-wisata-budaya { // background-color: #3FBBF6; border: 1.5px solid #3FBBF6; }
+.marker-wisata-alam { // background-color: #31CD66; border: 1.5px solid #31CD66; }
+.marker-wisata-religi { // background-color: #EBC013; border: 1.5px solid #EBC013; }
+.marker-wisata-minat-khusus { // background-color: #a600ff; border: 1.5px solid #a600ff;  }
+.marker-default { // background-color: #7f8c8d; border: 1.5px solid #7f8c8d;  }*/
+
+/* Contoh: Jika Anda ingin class .marker-wisata-buatan memberikan border-style khusus (misal dashed)
+   Anda bisa menargetkan div pembungkus di dalam ikon dengan class tersebut: 
+.marker-wisata-buatan > div {
+    border-style: dashed; 
+}*/
+
+/**
+ * =============================================================================
+ * MEDIA QUERIES UNTUK RESPONSIVITAS
+ * =============================================================================
+ */
+
+@media (max-width: 768px) {
+    .leaflet-marker-icon.custom-marker-icon {
+        width: 24px !important;
+        height: 24px !important;
+        margin-left: -12px !important;
+        margin-top: -24px !important;
+    }
+
+    .custom-marker-icon i svg {
+        width: 16px !important;
+        height: 16px !important;
+        fill: white !important;
+    }
+
+    body {
+        padding-top: var(--header-height);
+    }
+
+    .main-nav, .login-button {
+        display: none;
+    }
+
+    .hamburger-menu {
+        display: block;
+    }
+
+    .logo-text p {
+        font-size: 0.9em;
+    }
+
+    .logo {
+        height: 40px;
+        margin-right: 10px;
+    }
+
+    /* === REVISI UNTUK MOBILE === */
+    #map-section {
+        margin-top: 20px; /* Jarak dari header tetap 20px */
+        /* Mengatur tinggi peta agar menjadi persegi di mobile */
+        /* Lebar efektif peta adalah 100vw (viewport width) - 40px (padding kiri/kanan main) */
+        height: calc(100vw - 40px); 
+    }
+
+    /* Responsive Adjustments for Leaflet Popups */
+    .leaflet-popup-content-wrapper {
+        max-width: 240px !important;
+        width: auto !important; 
+    }
+
+    .leaflet-popup-content-wrapper img { 
+        max-height: 80px !important; 
+        border-radius: 10px 10px 4px 4px !important; 
+        margin-bottom: 8px !important; 
+    }
+
+    .leaflet-popup-content h3 {
+        font-size: 13px !important; 
+        margin-bottom: 8px !important; 
+    }
+
+    .leaflet-popup-content p {
+        font-size: 0.8em !important; 
+        margin-bottom: 8px !important; 
+    }
+
+    .popup-btn {
+        padding: 6px 10px !important; 
+        font-size: 0.85em !important; 
+        border-radius: 6px !important; 
+    }
+
+    /* Media query untuk kontrol layer pada mobile */
+    .leaflet-control-custom-layer #layer-icon {
+        width: 28px;
+        height: 28px;
+        padding: 4px;
+    }
+    .leaflet-control-custom-layer #layer-checkboxes {
+        padding: 6px 10px;
+    }
+    .leaflet-control-custom-layer #layer-checkboxes label {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-text {
+        display: none;
+    }
+    .logo {
+        margin-right: 0;
+    }
+}
+
+/* =========================================================================
+   GAYA UNTUK KONTROL LEAFLET KUSTOM (LAYERS TOGGLE)
+   Ini akan menggantikan gaya #custom-layer-toggle sebelumnya.
+   Leaflet akan menambahkan kelas 'leaflet-control' dan 'leaflet-bar' secara otomatis.
+   ========================================================================= */
+
+/* Kontainer utama untuk kontrol kustom */
+.leaflet-control-custom-layer {
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    padding: 0; 
+    margin: 0; 
+}
+
+/* Icon untuk membuka/menutup panel layer */
+.leaflet-control-custom-layer #layer-icon {
+    display: block; 
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 8px; 
+    box-sizing: border-box; 
+}
+
+/* Container untuk checkboxes (panel yang muncul) */
+.leaflet-control-custom-layer #layer-checkboxes {
+    display: none; 
+    background-color: white;
+    border-radius: 8px; 
+    padding: 8px 12px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
+    margin-top: 8px; 
+}
+
+.leaflet-control-custom-layer #layer-checkboxes.active {
+    display: block; 
+}
+
+.leaflet-control-custom-layer #layer-checkboxes label {
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 5px;
+}
+
+.leaflet-control-custom-layer #layer-checkboxes label:last-child {
+    margin-bottom: 0;
+}
+
+/* Gaya tambahan untuk kompatibilitas dengan Leaflet default styles */
+/* Ini penting agar icon zoom, fullsceen, dll tetap tampil normal */
+/* Memberikan margin di atas kontrol zoom/fullscreen (kiri atas) */
+.leaflet-control-container .leaflet-top.leaflet-left .leaflet-control:first-child {
+    margin-top: 20px; 
+}
+
+/* Memberikan margin di atas untuk kontrol kustom (kanan atas) */
+.leaflet-control-container .leaflet-top.leaflet-right .leaflet-control:first-child {
+    margin-top: 20px; 
+}
+
+/* =========================================================================
+/* Styling untuk sub-menu filter kategori
+/* ========================================================================= */
+.category-filter-sub-menu {
+    border-top: 1px solid #ddd;
+    margin-top: 5px;
+    padding-top: 5px;
+    display: none; /* Sembunyikan secara default */
+    max-height: 200px; /* Batasi tinggi untuk scroll jika banyak kategori */
+    overflow-y: auto; /* Aktifkan scroll vertikal jika konten melebihi max-height */
+}
+
+.category-filter-sub-menu label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    /* --- PERUBAHAN DI SINI --- */
+    font-weight: normal; /* Mengubah menjadi Poppins biasa (tidak bold) */
+    /* --- AKHIR PERUBAHAN --- */
+    font-size: 0.9em; /* Sesuaikan ukuran font jika perlu */
+}
+
+.category-filter-sub-menu label input[type="checkbox"] {
+    margin-right: 8px;
+    min-width: 15px;
+    min-height: 15px;
+}
+
+/* Optional: Hover effect for category labels */
+.category-filter-sub-menu label:hover {
+    background-color: #f0f0f0;
+}
+
+/* Styling untuk sub-menu filter kategori */
+/* Tingkatkan spesifisitas untuk menimpa gaya default Leaflet control label */
+.leaflet-control-custom-layer #layer-checkboxes .category-filter-sub-menu label {
+    font-weight: normal; /* Ini akan menimpa font-weight bold dari parent */
+    /* Pastikan properti lain yang Anda inginkan tetap ada di sini jika diperlukan */
+    font-size: 1em; /* Mengubah dari 0.9em menjadi 1em */
+    /* Anda juga bisa mencoba 1.1em atau 14px/15px jika 1em masih terlalu kecil */
+}
+
+/* Styling untuk sub-menu filter kecamatan (disamakan dengan kategori) */
+.kecamatan-filter-sub-menu {
+    border-top: 1px solid #ddd; /* Menggunakan border-top seperti kategori */
+    margin-top: 5px;
+    padding-top: 5px;
+    display: none; /* Sembunyikan secara default, JavaScript yang akan menampilkannya */
+    max-height: 200px; /* Batasi tinggi untuk scroll jika banyak kecamatan */
+    overflow-y: auto; /* Aktifkan scroll vertikal jika konten melebihi max-height */
+}
+
+.kecamatan-filter-sub-menu label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-weight: normal; /* Font Poppins biasa (tidak bold) */
+    font-size: 0.9em; /* Ukuran font lebih kecil sedikit */
+}
+
+.kecamatan-filter-sub-menu label input[type="checkbox"] {
+    margin-right: 8px;
+    min-width: 15px;
+    min-height: 15px;   
+}
+
+/* Optional: Hover effect untuk label kecamatan */
+.kecamatan-filter-sub-menu label:hover {
+    background-color: #f0f0f0;
+}
+
+/* Tingkatkan spesifisitas untuk menimpa gaya default Leaflet control label */
+.leaflet-control-custom-layer #layer-checkboxes .kecamatan-filter-sub-menu label {
+    font-weight: normal; /* Ini akan menimpa font-weight bold dari parent */
+    font-size: 1em; /* Mengubah dari 0.9em menjadi 1em, agar konsisten dengan kategori */
+}
+
+/* =========================================================================
+ * REVISI: STYLING UNTUK KONTROL LEGENDA GAMBAR (DIOPTIMALKAN UKURAN & Z-INDEX)
+ * ========================================================================= */
+.leaflet-control-legend-image {
+    background-color: white;
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.4);
+    pointer-events: none; /* Biarkan event mouse tembus ke elemen di bawahnya */
+    opacity: 0; /* Awalnya sembunyi */
+    transition: opacity 0.3s ease-in-out; /* Animasi fade */
+    z-index: 500; /* Z-index default untuk legenda, pastikan lebih rendah dari kontrol utama */
+}
+
+.leaflet-control-legend-image.visible {
+    opacity: 1; /* Tampilkan */
+}
+
+.leaflet-control-legend-image img {
+    max-width: 200px; /* Ukuran default untuk desktop, sedikit lebih kecil dari 444px asli */
+    height: auto;
+    display: block;
+}
+
+/* =========================================================================
+ * REVISI: STYLING UNTUK KONTROL LEGENDA GAMBAR (DIOPTIMALKAN UKURAN & Z-INDEX)
+ * ========================================================================= */
+.leaflet-control-legend-image {
+    background-color: white;
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.4);
+    pointer-events: none; /* Biarkan event mouse tembus ke elemen di bawahnya */
+    opacity: 0; /* Awalnya sembunyi */
+    transition: opacity 0.3s ease-in-out; /* Animasi fade */
+    z-index: 500; /* Z-index default untuk legenda, pastikan lebih rendah dari kontrol utama */
+}
+
+.leaflet-control-legend-image.visible {
+    opacity: 1; /* Tampilkan */
+}
+
+.leaflet-control-legend-image img {
+    max-width: 400px; /* Ukuran default untuk desktop (200px * 2) */
+    height: auto;
+    display: block;
+}
+
+/* =========================================================================
+ * REVISI FINAL: STYLING UNTUK KONTROL LEGENDA GAMBAR (Fokus Z-INDEX)
+ * ========================================================================= */
+.leaflet-control-legend-image {
+    background-color: white;
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.4);
+    pointer-events: none; /* Biarkan event mouse tembus ke elemen di bawahnya */
+    opacity: 0; /* Awalnya sembunyi */
+    transition: opacity 0.3s ease-in-out; /* Animasi fade */
+    z-index: 100; /* Z-index legenda, pastikan ini LEBIH RENDAH */
+}
+
+.leaflet-control-legend-image.visible {
+    opacity: 1; /* Tampilkan */
+}
+
+.leaflet-control-legend-image img {
+    max-width: 400px; /* Ukuran default untuk desktop */
+    height: auto;
+    display: block;
+}
+
+/* =========================================================================
+ * REVISI: STYLING UNTUK KONTROL LEGENDA GAMBAR (DIOPTIMALKAN UKURAN & Z-INDEX)
+ * ========================================================================= */
+.leaflet-control-legend-image {
+    background-color: white;
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.4);
+    pointer-events: none; /* Biarkan event mouse tembus ke elemen di bawahnya */
+    opacity: 0; /* Awalnya sembunyi */
+    transition: opacity 0.3s ease-in-out; /* Animasi fade */
+    z-index: 500; /* Z-index default untuk legenda, pastikan lebih rendah dari kontrol utama */
+}
+
+.leaflet-control-legend-image.visible {
+    opacity: 1; /* Tampilkan */
+}
+
+.leaflet-control-legend-image img {
+    max-width: 400px; /* Ukuran default untuk desktop (200px * 2) */
+    height: auto;
+    display: block;
+}
+
+/* =========================================================================
+ * Pastikan Kontrol Utama (Filter Layer) selalu di atas Legenda
+ * ========================================================================= */
+.leaflet-control-custom-layer {
+    z-index: 1000; /* Pastikan ini lebih tinggi dari z-index legenda */
+}
+
+
+/* =========================================================================
+ * Media Queries untuk Tampilan Mobile dan Tablet
+ * ========================================================================= */
+
+/* Untuk tampilan Tablet dan Mobile (misalnya, lebar layar kurang dari atau sama dengan 768px) */
+@media screen and (max-width: 768px) {
+    .leaflet-control-legend-image {
+        padding: 3px; /* Padding sedikit lebih kecil untuk mobile/tablet */
+    }
+
+    .leaflet-control-legend-image img {
+        max-width: 240px; /* Ukuran lebih besar untuk mobile/tablet (120px * 2) */
+    }
+}
+
+/* Contoh untuk ponsel sangat kecil */
+@media screen and (max-width: 480px) {
+    .leaflet-control-legend-image img {
+        max-width: 180px; /* Bahkan lebih kecil untuk layar yang sangat sempit (90px * 2) */
+    }
+}
+
+/* =========================================================================
+ * TATA LETAK GRID UNTUK DESKTOP (2 KOLOM)
+ * ========================================================================= */
+.main-content-wrapper {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 25% 75%;
+    grid-template-areas:
+        "search map"
+        "aside map"
+        "aside rekomendasi";
+    gap: 20px;
+    max-width: none;
+    margin: 0 auto;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+/* Kolom search (25%) */
+.search-sidebar {
+    grid-area: search;
+    border-radius: 18px;
+    gap: 10px;
+}
+
+.remaining-aside-content {
+    grid-area: aside;
+}
+
+/* =========================================================================
+ * PENCARIAN WISATA (SEARCH)
+ * ========================================================================= */
+#search-box {
+    background-color: white;
+    border-radius: 18px;
+    padding: 20px 17px;
+    box-shadow: 3px 4px 11px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+/* Input Search */
+#search-input {
+    border-radius: 18px;
+    border: 1px solid #787878;
+    padding: 10px 16px;
+    font-style: normal;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#search-input::placeholder {
+    font-style: normal;
+}
+
+/* Wrapper tombol */
+#search-buttons-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+}
+
+/* Tombol Cari & Reset */
+#search-button,
+#reset-button {
+    width: 98px;
+    height: 43px;
+    border-radius: 18px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+
+#search-button {
+    background-color: #01A149;
+    color: white;
+}
+
+#reset-button {
+    background-color: #FFC905;
+    color: black;
+}
+
+/* Responsive Behavior */
+@media (max-width: 768px) {
+    .main-content-wrapper {
+        display: flex;
+        flex-direction: column;
+        padding-left: 10px;
+        padding-right: 10px;
+        gap: 8px;  /* Jarak antar konten: 8px */
+    }
+
+    .search-sidebar {
+        width: 100%;
+        margin-top: 8px;  /* Jarak dari header */
+        padding: 0;  /* padding diatur di dalam #search-box agar rata dengan peta */
+    }
+
+    #search-box {
+        flex-direction: row;
+        align-items: stretch;
+        gap: 6px;
+        margin-top: 0;
+        margin-bottom: 0;
+        padding: 10px; /* lebih ringkas */
+        border-radius: 8px; /* samakan dengan peta */
+    }
+
+    #search-input {
+        flex: 1;
+        font-size: 11px;
+        padding: 6px 10px;
+        border-radius: 12px;
+    }
+
+    #search-input::placeholder {
+        font-size: 12px;
+    }
+
+    #search-buttons-wrapper {
+        flex-direction: row;
+        align-items: center;
+        gap: 6px;
+    }
+
+    #search-button,
+    #reset-button {
+        width: 80px;
+        height: 34px;
+        font-size: 12px;
+        border-radius: 12px;
+        flex: none;
+    }
+
+    #map-section {
+        width: 100%;
+        height: calc(100vw - 20px); /* disesuaikan dari padding horizontal */
+    }
+
+    #mapid {
+        width: 100% !important;
+        aspect-ratio: 1 / 1; /* Membuat peta persegi */
+    }
+
+    .remaining-aside-content {
+        width: 100%;
+    }
+
+    main {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+
+/* =============================================================================
+/*Filter kategori objek wisata (main)*/
+/* =============================================================================*/
+#filter-kategori-box {
+    background-color: white;
+    border-radius: 18px;
+    padding: 20px 17px;
+    box-shadow: 3px 4px 11px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* agar konten rata kiri */
+    gap: 10px;
+    margin-top: 0px;
+}
+#filter-kategori-box h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+#filter-kategori-box h3 .strip {
+    width: 4px;
+    height: 18px;
+    background-color: var(--primary-color, #e50914); /* fallback jika var tidak didefinisikan */
+    margin-right: 10px;
+    border-radius: 2px;
+}
+.filter-kategori-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%; /* agar ul tidak membatasi lebarnya */
+}
+
+.filter-kategori-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    padding: 8px 0px;
+    transition: background-color 0.2s;
+    border-radius: 6px;
+    font-size: 14px;
+    width: 100%;
+    padding-left: 4px;
+}
+
+.filter-kategori-list li i {
+    font-size: 18px;
+    width: 20px;
+    text-align: center;
+}
+
+.filter-kategori-list li:hover {
+    background-color: #fce7e7;
+    color: #DF2929;
+}
+
+.filter-kategori-list li.active {
+    background-color: #DF2929;
+    color: white;
+}
+
+/* =============================================================================
+/* Kecamatan dengan wisata terbanyak */
+/* =============================================================================*/
+#kecamatan-wisata-terbanyak-box {
+    background-color: white;
+    border-radius: 18px;
+    padding: 20px 17px;
+    box-shadow: 3px 4px 11px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+#kecamatan-wisata-terbanyak-box h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    text-align: left;
+}
+
+#kecamatan-wisata-terbanyak-box h3 .strip {
+    width: 4px;
+    height: 50px;
+    background-color: var(--primary-color, #e50914);
+    margin-right: 10px;
+    border-radius: 2px;
+}
+
+#kecamatan-wisata-terbanyak-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0px;
+    transition: background-color 0.2s, color 0.2s;
+    border-radius: 6px;
+    font-size: 14px;
+    width: 100%;
+    padding-left: 4px;
+}
+
+/* Default color for spans inside li */
+#kecamatan-wisata-terbanyak-list li span {
+    color: #555; /* Default text color */
+}
+
+#kecamatan-wisata-terbanyak-list li span:last-child {
+    font-weight: bold;
+    color: #333; /* Default text color for the count */
+}
+
+#kecamatan-wisata-terbanyak-list li:hover {
+    background-color: #fce7e7;
+    /* Warna ini akan diterapkan ke 'li' itu sendiri, tapi span mungkin memiliki warna yang lebih spesifik */
+    color: #DF2929;
+}
+
+/* Pastikan semua span di dalam li juga berubah warna saat hover */
+#kecamatan-wisata-terbanyak-list li:hover span {
+    color: #DF2929;
+}
+
+
+/* Gaya saat item list kecamatan aktif */
+#kecamatan-wisata-terbanyak-list li.active {
+    background-color: #DF2929; /* Warna latar belakang aktif */
+    color: white; /* Warna teks default untuk li aktif (jika tidak ada span) */
+}
+
+/* Pastikan semua span di dalam li aktif juga berwarna putih */
+#kecamatan-wisata-terbanyak-list li.active span {
+    color: white; /* Warna teks untuk nama kecamatan dan jumlah saat aktif */
+}
+
+
+/* =============================================================================
+ * fitur rekomendasi
+ * =============================================================================
+ */
+/* Gaya untuk bagian rekomendasi */
+.rekomendasi {
+    grid-area: rekomendasi;
+    padding: 0px;
+    border-radius: 8px;
+    margin-top: 0px; /* Jarak dari elemen di atasnya */
+    margin-right: 10px;
+    margin-left: 0px;
+}
+
+.rekomendasi-header h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+    margin-top: 0px;
+    text-align: left;
+    display: flex;
+}
+.rekomendasi-header h3 .strip {
+    width: 4px;
+    height: 50px;
+    background-color: var(--primary-color, #e50914);
+    margin-right: 10px;
+    border-radius: 2px;
+}
+
+
+/* #rekomendasi-container */
+/* Ini sekarang hanya wadah grid tanpa background/shadownya sendiri */
+.rekomendasi-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px; /* Jarak antar kartu */
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+/* Gaya untuk setiap kartu rekomendasi */
+.rekomendasi-card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 3px 4px 11px 0 rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex; /* Gunakan flexbox untuk layout horizontal */
+    flex-direction: row;
+    align-items: stretch; /* Penting: agar item mengisi tinggi wadah */
+    gap: 15px;
+    padding: 10px; /* Padding seragam */
+    height: auto; /* Biarkan tinggi menyesuaikan konten */
+}
+
+/* Gambar dalam kartu */
+.rekomendasi-card img {
+    width: 150px; /* Lebar gambar */
+    height: 100%; /* Penting: Membuat tinggi gambar mengisi tinggi card */
+    object-fit: cover; /* Memastikan gambar tetap proporsional */
+    border-radius: 8px;
+    flex-shrink: 0; /* Mencegah gambar menyusut */
+}
+
+.rekomendasi-card-content {
+    padding: 0;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column; /* Konten diatur secara vertikal */
+    justify-content: space-between; /* Penting: Membuat tombol ke bawah */
+    height: 100%; /* Memastikan konten mengisi tinggi penuh */
+}
+
+/* Nama objek wisata */
+.rekomendasi-card h4 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    text-align: left;
+    margin-top: 0;
+    margin-bottom: 5px;
+    color: #333;
+    line-height: 1.2;
+}
+
+/* Deskripsi */
+.rekomendasi-card p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    color: #666;
+    line-height: 1.4;
+    margin-bottom: 10px; /* Jarak dari tombol */
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Mengurangi menjadi 2 baris agar lebih ringkas seperti di gambar */
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+/* Tombol Lihat Informasi */
+.rekomendasi-card .btn-lihat-informasi {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 10px;
+    background-color: #F1F1F1;
+    color: #DF2929;
+    text-decoration: none;
+    border-radius: 10px;
+    font-size: 12px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    align-self: flex-start; /* Penting: Menjaga tombol tetap di kiri dalam flex container vertikal */
+    white-space: nowrap;
+}
+
+.rekomendasi-card .btn-lihat-informasi:hover {
+    background-color: #e0e0e0;
+    color: #c02020;
+}
+
+.rekomendasi-card .btn-lihat-informasi::after {
+    content: '›';
+    font-size: 1.2em;
+    line-height: 1;
+    margin-left: 2px;
+}
+
+
+/* Media queries untuk responsif */
+@media (max-width: 992px) {
+    .rekomendasi {
+        margin-right: 0px;
+        margin-left: 0px;
+    }
+    .rekomendasi-container {
+        grid-template-columns: 1fr;
+    }
+    .rekomendasi-card {
+        flex-direction: row; /* Tetap row pada breakpoint ini */
+    }
+}
+
+@media (max-width: 576px) {
+    .rekomendasi {
+        margin-right: 0px;
+        margin-left: 0px;
+    }
+    .rekomendasi-card {
+        flex-direction: column; /* Mengubah menjadi kolom untuk mobile */
+        align-items: center;
+        text-align: center;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .rekomendasi-card img {
+        width: 100%; /* Gambar mengisi penuh lebar card */
+        height: 180px; /* Tinggi tetap saat mobile agar tidak terlalu kecil */
+        margin-bottom: 10px; /* Beri jarak di bawah gambar */
+    }
+    .rekomendasi-card-content {
+        align-items: center; /* Pusatkan konten di mobile */
+    }
+    .rekomendasi-card h4,
+    .rekomendasi-card p {
+        text-align: center; /* Pusatkan teks di mobile */
+    }
+    .rekomendasi-card .btn-lihat-informasi {
+        align-self: center; /* Pusatkan tombol di mobile */
+    }
+}
+
+/* =============================================================================
+ * AKHIR DARI FILE STYLE.CSS
+ * =============================================================================
+ */

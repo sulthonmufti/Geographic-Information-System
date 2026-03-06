@@ -1,0 +1,537 @@
+/**
+ * =============================================================================
+ * PENGATURAN FONT GLOBAL
+ * Mengimpor font Poppins dari Google Fonts untuk digunakan di seluruh halaman.
+ * =============================================================================
+ */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/**
+ * =============================================================================
+ * VARIABEL CSS (CUSTOM PROPERTIES)
+ * Mendefinisikan warna dasar yang akan digunakan kembali di various bagian CSS
+ * untuk kemudahan pengelolaan dan konsistensi tema.
+ * =============================================================================
+ */
+:root {
+    --primary-color: #e50914; /* Merah asli */
+    --hover-color: #DF2929; /* Warna hover baru */
+    --text-color-light: #ffffff;
+    --text-color-dark: #333333;
+    --background-dark: #000000;
+    --link-hover-color: #ccc;
+    --header-bg-opacity: rgba(0, 0, 0, 0.9);
+    --header-height: 80px; /* Variabel untuk tinggi header yang diperkirakan */
+    --footer-height: 60px; /* Perkiraan tinggi footer, sesuaikan jika beda */
+}
+
+/**
+ * =============================================================================
+ * RESET CSS DAN PENGATURAN DASAR BODY
+ * Mengatur ulang margin, padding, dan box-sizing untuk konsistensi antar browser.
+ * Mengatur font dan warna teks dasar untuk seluruh body dokumen.
+ * =============================================================================
+ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color-dark);
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding-top: var(--header-height); /* TETAPKAN INI UNTUK MENDORONG KONTEN KE BAWAH HEADER */
+    overflow-x: hidden; /* Mencegah overflow horizontal */
+}
+
+/* Kelas untuk mencegah scrolling pada body, digunakan saat menu mobile aktif */
+.no-scroll {
+    overflow: hidden;
+}
+
+/**
+ * =============================================================================
+ * PENGATURAN KONTAINER UMUM
+ * Mengatur lebar maksimum dan penengahan konten untuk layout yang rapi.
+ * Digunakan di dalam header untuk menampung logo dan navigasi.
+ * =============================================================================
+ */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%; /* Pastikan container mengisi tinggi parentnya */
+}
+
+/**
+ * =============================================================================
+ * STYLING HEADER UTAMA
+ * Mengatur tampilan background, warna teks, padding, dan posisi header.
+ * =============================================================================
+ */
+.main-header {
+    background-color: var(--header-bg-opacity);
+    color: var(--text-color-light);
+    position: fixed; /* Membuat header tetap pada posisi tertentu di viewport */
+    width: 100%;     /* Memastikan header membentang selebar viewport */
+    top: 0;          /* Memposisikan header di bagian paling atas */
+    left: 0;         /* Memposisikan header di bagian paling kiri */
+    z-index: 1000;   /* Pastikan header di atas elemen lain, termasuk peta */
+    height: var(--header-height); /* Berikan tinggi eksplisit untuk header fixed */
+}
+
+/**
+ * =============================================================================
+ * STYLING LOGO DAN TEKS LOGO
+ * Mengatur tampilan logo gambar dan teks yang menyertainya.
+ * =============================================================================
+ */
+.logo-container {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--text-color-light);
+}
+
+.logo {
+    height: 50px;
+    margin-right: 15px;
+}
+
+.logo-text p {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.2;
+}
+
+/**
+ * =============================================================================
+ * STYLING NAVIGASI UTAMA (DESKTOP)
+ * Mengatur tampilan daftar menu navigasi untuk tampilan desktop.
+ * =============================================================================
+ */
+.main-nav {
+    display: flex;
+    align-items: center;
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    margin-right: 30px;
+}
+
+.main-nav ul li {
+    margin-left: 30px;
+}
+
+.main-nav ul li a {
+    color: var(--text-color-light);
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 16px;
+    padding-bottom: 3px;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.main-nav ul li a:hover,
+.main-nav ul li a.active {
+    color: var(--hover-color);
+    transform: translateY(-2px);
+}
+
+/**
+ * =============================================================================
+ * STYLING TOMBOL LOGIN
+ * Mengatur tampilan tombol login di header.
+ * =============================================================================
+ */
+.login-button {
+    background-color: var(--primary-color);
+    color: var(--text-color-light);
+    padding: 8px 16px;
+    border-radius: 15px;
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.login-button:hover {
+    transform: translateY(-2px);
+    background-color: var(--text-color-light);
+    color: var(--hover-color);
+    border-color: var(--hover-color);
+}
+
+/**
+ * =============================================================================
+ * STYLING HAMBURGER MENU ICON
+ * Mengatur tampilan tombol hamburger yang hanya terlihat di layar kecil.
+ * =============================================================================
+ */
+.hamburger-menu {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text-color-light);
+    font-size: 1.8em;
+    cursor: pointer;
+}
+
+/**
+ * =============================================================================
+ * STYLING OVERLAY NAVIGASI MOBILE
+ * Mengatur tampilan overlay layar penuh yang muncul saat menu hamburger diklik.
+ * =============================================================================
+ */
+.mobile-nav-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 999; 
+}
+
+.mobile-nav-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/**
+ * =============================================================================
+ * STYLING MENU DI DALAM OVERLAY NAVIGASI MOBILE
+ * Mengatur tampilan daftar menu yang ada di dalam overlay.
+ * =============================================================================
+ */
+.mobile-nav-menu {
+    text-align: center;
+    padding: 20px;
+    width: 80%;
+}
+
+.mobile-nav-menu ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 30px;
+}
+
+.mobile-nav-menu ul li {
+    margin-bottom: 25px;
+}
+
+.mobile-nav-menu ul li a {
+    color: var(--text-color-light);
+    text-decoration: none;
+    font-size: 1.6em;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.mobile-nav-menu ul li a:hover {
+    color: var(--link-hover-color);
+}
+
+/**
+ * =============================================================================
+ * STYLING TOMBOL LOGIN MOBILE
+ * Mengatur tampilan tombol login saat di dalam menu mobile.
+ * =============================================================================
+ */
+.mobile-login-button {
+    background-color: var(--primary-color);
+    color: var(--text-color-light);
+    padding: 15px 30px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.4em;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.mobile-login-button:hover {
+    background-color: #c70811;
+}
+
+/**
+ * =============================================================================
+ * STYLING KONTEN UTAMA (DEMONSTRASI)
+ * Gaya dasar untuk area konten utama halaman.
+ * =============================================================================
+ */
+main {
+    flex-grow: 1;
+    /* Menghapus padding-top karena body sudah memiliki padding-top untuk header */
+    padding-left: 20px; /* Padding horizontal */
+    padding-right: 20px; /* Padding horizontal */
+    padding-bottom: 40px; /* Padding bawah untuk konten di main */
+    text-align: center;
+    
+    background-image: url('../gambar/background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    z-index: 0;
+}
+
+/* Pseudo-element untuk mengatur opacity pada background image */
+main::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.75);
+    z-index: -1; 
+}
+
+/**
+ * =============================================================================
+ * STYLING FOOTER
+ * Mengatur tampilan dan posisi footer di bagian bawah halaman.
+ * =============================================================================
+ */
+.footer {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 20px 40px;
+    font-size: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 5;
+    min-height: var(--footer-height); 
+}
+
+/* Mengatur perataan teks untuk elemen anak langsung di dalam footer */
+.footer > div:first-child {
+    text-align: left;
+}
+
+.footer > div:last-child {
+    text-align: right;
+}
+
+/* Media query untuk footer pada layar kecil */
+@media (max-width: 600px) {
+    .footer {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .footer > div {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .footer > div:last-child {
+        margin-bottom: 0;
+    }
+}
+
+
+/* =========================================================================
+ * PENCARIAN WISATA (SEARCH)
+ * ========================================================================= */
+#search-box {
+    background-color: white;
+    border-radius: 18px;
+    padding: 20px 17px; /* Default padding for desktop */
+    box-shadow: 3px 4px 11px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column; /* Default: kolom untuk desktop */
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    width: 25%;
+}
+
+/* Input Search */
+#search-input {
+    border-radius: 18px;
+    border: 1px solid #787878;
+    padding: 10px 16px;
+    font-style: normal;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    width: 100%; /* Full width within its flex context */
+    box-sizing: border-box;
+}
+
+#search-input::placeholder {
+    font-style: normal;
+    /* Ubah placeholder text sesuai gambar */
+    font-size: 15px; /* Sesuaikan ukuran font placeholder */
+    color: #888; /* Warna placeholder */
+}
+
+/* Wrapper tombol */
+#search-buttons-wrapper {
+    display: flex;
+    justify-content: center; /* Untuk desktop, tengah */
+    gap: 14px;
+    /* Tidak perlu width: 100% untuk desktop */
+}
+
+/* Tombol Cari & Reset */
+#search-button,
+#reset-button {
+    width: 98px;
+    height: 43px;
+    border-radius: 18px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+    white-space: nowrap; /* Mencegah teks tombol membungkus */
+    flex-shrink: 0; /* Penting untuk mencegah tombol menyusut */
+}
+
+#search-button {
+    background-color: #01A149;
+    color: white;
+}
+
+#reset-button {
+    background-color: #FFC905;
+    color: black;
+}
+
+/* Responsive Behavior */
+@media (max-width: 768px) {
+    /* Mengubah tata letak utama menjadi kolom */
+    main > div { /* Targetkan div flex yang membungkus aside dan section */
+        flex-direction: column;
+    }
+
+    #search-sidebar {
+        width: 100%; /* Sidebar akan mengambil seluruh lebar */
+        margin-top: 0;
+        padding: 0 20px; /* Tambahkan padding horizontal agar tidak menempel ke tepi layar */
+        box-sizing: border-box; /* Pastikan padding tidak menambah lebar total */
+    }
+
+    #search-box {
+        flex-direction: row; /* **Ini kuncinya: ubah ke baris** */
+        align-items: center;
+        /* Hapus justify-content: space-between; */ /* Kita tidak ingin input dan tombol terpisah jauh */
+        gap: 10px; /* Jarak antar elemen */
+        margin-top: 20px;
+        margin-bottom: 20px;
+        padding: 15px; /* Sesuaikan padding agar tidak terlalu besar di mobile */
+        width: 100%; /* Pastikan search-box memenuhi lebar parent-nya */
+        box-sizing: border-box;
+        
+    }
+
+    #search-input {
+        flex: 1; /* Input akan mengambil ruang yang tersisa sebanyak mungkin */
+        min-width: 100px; /* Lebar minimum untuk input agar tidak terlalu kecil */
+        padding: 12px 16px; /* Sesuaikan padding agar terlihat mirip gambar */
+        font-size: 15px; /* Sesuaikan ukuran font input */
+    }
+
+    #search-input::placeholder {
+        font-size: 15px; /* Pastikan ukuran font placeholder juga sesuai */
+    }
+
+
+    #search-buttons-wrapper {
+        display: flex;
+        flex-direction: row; /* Pastikan tombol tetap sejajar */
+        align-items: center;
+        gap: 8px; /* Jarak antar tombol, sedikit lebih kecil */
+        /* Hapus flex-shrink: 0; dari sini karena kita ingin flex-shrink pada tombol individual */
+        flex: 0 0 auto; /* Penting: mencegah wrapper tombol mengambil ruang yang tidak perlu */
+    }
+
+    #search-button,
+    #reset-button {
+        width: auto; /* Biarkan lebar tombol menyesuaikan konten */
+        padding: 10px 20px; /* Sesuaikan padding agar mirip gambar (lebih lebar) */
+        font-size: 15px; /* Sesuaikan ukuran font tombol agar mirip gambar */
+        flex: 0 0 auto; /* Penting: mencegah tombol menyusut/mengembang, menjaga lebar */
+        height: auto;
+    }
+
+    #map-section {
+        width: 100%; /* Peta akan mengambil seluruh lebar */
+    }
+
+    #mapid {
+        width: 100% !important;
+        aspect-ratio: 1 / 1; /* Membuat peta persegi */
+    }
+}
+
+/* Opsional: Untuk layar yang lebih kecil lagi (misal: ponsel) */
+@media (max-width: 480px) {
+    #search-sidebar {
+        padding: 0 15px; /* Sedikit perkecil padding horizontal untuk layar sangat kecil */
+    }
+
+    #search-box {
+        flex-wrap: nowrap; /* **Penting: pastikan tidak membungkus jika ingin 1 baris** */
+        justify-content: center; /* Bisa jadi center atau space-between tergantung preferensi */
+        gap: 8px; /* Sesuaikan gap */
+        padding: 12px; /* Sesuaikan padding search-box */
+    }
+
+    #search-input {
+        flex: 1; /* Tetap flex 1 */
+        min-width: 80px; /* Sesuaikan min-width jika perlu */
+        padding: 10px 14px; /* Sedikit perkecil padding input */
+        font-size: 14px;
+    }
+
+    #search-input::placeholder {
+        font-size: 14px;
+    }
+
+    #search-buttons-wrapper {
+        gap: 6px; /* Jarak antar tombol lebih kecil lagi */
+    }
+
+    #search-button,
+    #reset-button {
+        padding: 8px 15px; /* Sedikit perkecil padding tombol */
+        font-size: 13px; /* Kecilkan ukuran font tombol */
+    }
+}
