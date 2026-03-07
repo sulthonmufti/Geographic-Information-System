@@ -1,0 +1,241 @@
+/* style.css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body, html {
+    height: 100%;
+}
+
+/* Header navigasi */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background-color: rgba(0, 0, 0, 0.9); /* Opacity 90% untuk header */
+    color: white;
+    z-index: 100;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+}
+
+.logo {
+    height: 50px;
+    margin-right: 10px;
+}
+
+.logo-text {
+    font-size: 14px;
+    line-height: 1.2;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+}
+
+.nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;           /* Tetapkan padding awal agar tidak berubah saat hover */
+    border-radius: 15px;
+    transition: all 0.3s ease;
+}
+
+.nav a:hover {
+    background-color: #DF2929;
+    color: white;
+    transform: translateY(-2px); /* Naik sedikit */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+
+
+.nav a i {
+    font-size: 16px;
+}
+
+/* Bagian hero dan background */
+.hero {
+    min-height: 100vh;
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: 80px; /* dimulai dari bawah header */
+    box-sizing: border-box;
+}
+
+/* Background image dengan opacity 90% dan linear gradient hitam dari 9% ke 100% */
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to bottom, rgba(0,0,0,0.09), rgba(0,0,0,1)), url('../gambar/landing-page.jpg');
+    background-size: cover;
+    background-position: top center;
+    opacity: 0.9; /* Opacity untuk background image saja */
+    z-index: 1;
+}
+
+.content {
+    position: relative;
+    color: white;
+    z-index: 2;
+    max-width: 800px;
+}
+
+.content h1 {
+    font-size: 2.5em;
+    font-weight: 700;
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+}
+
+.content p {
+    font-size: 1.2em;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+}
+
+.cta-button {
+    background: white;
+    color: black;
+    padding: 10px 25px;
+    border-radius: 15px; /* Corner radius 15 */
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+
+.cta-button i {
+    font-size: 16px;
+}
+
+/* REVISI HOVER BARU */
+.cta-button:hover {
+    background: #DF2929;
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Footer dengan tulisan kiri dan kanan */
+.footer {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.9); /* Opacity 90% untuk footer */
+    color: white;
+    padding: 20px 40px;
+    font-size: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 5;
+}
+
+.footer .left {
+    text-align: left;
+}
+
+.footer .right {
+    text-align: right;
+}
+
+/* Responsiveness */
+@media screen and (max-width: 768px) {
+    .content h1 {
+        font-size: 1.8em;
+    }
+
+    .content p {
+        font-size: 1em;
+    }
+
+    .cta-button {
+        padding: 8px 20px;
+        font-size: 14px;
+    }
+
+    .logo-text {
+        font-size: 12px;
+    }
+
+    .nav a {
+        font-size: 14px;
+        margin-left: 10px;
+    }
+
+    .footer {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer .left,
+    .footer .right {
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    /* Header: hanya logo gambar (teks disembunyikan) */
+    .logo-text {
+        display:none;
+    }
+
+    .logo-container {
+        flex: 1;
+    }
+    .header {
+         flex-direction: row;
+        align-items: flex-start;
+        padding: 10px 20px;
+    }
+
+    .nav {
+        margin-top: 10px;
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .logo-text {
+        font-size: 11px;
+    }
+
+    .cta-button {
+        max-width: 250px;
+        width: auto;
+        padding: 8px 18px;
+        font-size: 14px;
+        margin: 0 auto;
+    }
+}
