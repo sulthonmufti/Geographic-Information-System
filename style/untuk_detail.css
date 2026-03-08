@@ -1,0 +1,642 @@
+/**
+ * =============================================================================
+ * PENGATURAN FONT GLOBAL
+ * Mengimpor font Poppins dari Google Fonts untuk digunakan di seluruh halaman.
+ * =============================================================================
+ */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/**
+ * =============================================================================
+ * VARIABEL CSS (CUSTOM PROPERTIES)
+ * Mendefinisikan warna dasar yang akan digunakan kembali di various bagian CSS
+ * untuk kemudahan pengelolaan dan konsistensi tema.
+ * =============================================================================
+ */
+:root {
+    --primary-color: #E50914; /* Merah asli */
+    --hover-color: #DF2929; /* Warna hover baru */
+    --text-color-light: #ffffff;
+    --text-color-dark: #333333;
+    --background-dark: #000000;
+    --link-hover-color: #ccc;
+    --header-bg-opacity: rgba(0, 0, 0, 0.9);
+    --header-height: 80px; /* Variabel untuk tinggi header yang diperkirakan */
+    --footer-height: 60px; /* Perkiraan tinggi footer, sesuaikan jika beda */
+    --horizontal-padding: 20px;
+    --gray-bg-light: #f8f8f8; /* Warna abu-abu terang untuk latar belakang */
+    --border-color: #e0e0e0; /* Warna border untuk tabel/konten */
+    --heading-color: #1a1a1a;
+}
+
+/**
+ * =============================================================================
+ * RESET CSS DAN PENGATURAN DASAR BODY
+ * Mengatur ulang margin, padding, dan box-sizing untuk konsistensi antar browser.
+ * Mengatur font dan warna teks dasar untuk seluruh body dokumen.
+ * =============================================================================
+ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color-dark);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding-top: var(--header-height);
+    overflow-x: hidden;
+}
+
+.no-scroll {
+    overflow: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+.main-header {
+    background-color: var(--header-bg-opacity);
+    color: var(--text-color-light);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    height: var(--header-height);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--text-color-light);
+}
+
+.logo {
+    height: 50px;
+    margin-right: 15px;
+}
+
+.logo-text p {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.2;
+}
+
+.main-nav {
+    display: flex;
+    align-items: center;
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    margin-right: 30px;
+}
+
+.main-nav ul li {
+    margin-left: 30px;
+}
+
+.main-nav ul li a {
+    color: var(--text-color-light);
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 16px;
+    padding-bottom: 3px;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.main-nav ul li a:hover,
+.main-nav ul li a.active {
+    color: var(--hover-color);
+    transform: translateY(-2px);
+}
+
+.login-button {
+    background-color: var(--primary-color);
+    color: var(--text-color-light);
+    padding: 8px 16px;
+    border-radius: 15px;
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.login-button:hover {
+    transform: translateY(-2px);
+    background-color: var(--text-color-light);
+    color: var(--hover-color);
+    border-color: var(--hover-color);
+}
+
+.hamburger-menu {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.8em    ;
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1001; /* Pastikan z-index lebih tinggi dari overlay */
+    color: var(--text-color-light); /* Menjadikan ikon hamburger putih */
+}
+
+.mobile-nav {
+    color: var(--text-color-light); /* Warna teks putih (sudah diatur oleh variabel) */
+    padding: 40px 20px;
+    width: 80%; /* Lebar menu */
+    max-width: 400px; /* Batasi lebar maksimal */
+    border-radius: 10px;
+
+    /* Animasi slide/fade untuk panel menu itu sendiri */
+    transform: translateY(-20px); /* Posisi awal sedikit ke atas */
+    opacity: 0; /* Awalnya transparan */
+    transition: transform 0.3s ease, opacity 0.3s ease;
+
+    /* Menggunakan flexbox untuk konten di dalam mobile-nav */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Pusatkan item (ul dan button) */
+}
+
+.mobile-nav-overlay.active .mobile-nav {
+    transform: translateY(0); /* Kembali ke posisi semula */
+    opacity: 1; /* Munculkan */
+}
+
+.mobile-nav ul li a {
+    color: var(--text-color-light); /* Pastikan teks link berwarna putih */
+    text-decoration: none;
+    font-size: 1.6em;
+    font-weight: 600;
+    transition: color 0.3s ease;
+    display: block; /* Agar area klik lebih besar */
+}
+
+.mobile-nav ul li a:hover {
+    color: var(--link-hover-color);
+}
+
+.mobile-nav ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 30px;
+    width: 100%; /* Pastikan list mengambil lebar penuh */
+    text-align: center; /* Pusatkan teks dalam list */
+}
+
+.mobile-nav ul li {
+    margin-bottom: 25px;
+}
+
+
+.mobile-nav-overlay {
+    /* Menggunakan flexbox untuk memusatkan konten menu */
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.9); /* Latar belakang dim */
+    z-index: 999; /* Lebih rendah dari hamburger-menu agar ikon tetap bisa diklik */
+
+    /* Animasi fade in/out */
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+
+    /* Pengaturan Flexbox untuk centering */
+    display: flex;
+    justify-content: center; /* Pusatkan secara horizontal */
+    align-items: center;     /* Pusatkan secara vertikal */
+}
+
+.mobile-nav-overlay.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+body.no-scroll {
+  overflow: hidden;
+}
+
+.mobile-nav-menu {
+    text-align: center;
+    padding: 20px;
+    width: 80%;
+}
+
+.mobile-nav-menu ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 30px;
+}
+
+.mobile-nav-menu ul li {
+    margin-bottom: 25px;
+}
+
+.mobile-nav-menu ul li a {
+    color: var(--text-color-light);
+    text-decoration: none;
+    font-size: 1.6em;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.mobile-nav-menu ul li a:hover {
+    color: var(--link-hover-color);
+}
+
+.mobile-login-button {
+    background-color: var(--primary-color);
+    color: var(--text-color-light);
+    padding: 15px 30px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.4em;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.mobile-login-button:hover {
+    background-color: #c70811;
+}
+
+/* =============================================================================
+ * STYLING KHUSUS UNTUK HALAMAN DETAIL WISATA
+ * =============================================================================
+ */
+main {
+    flex-grow: 1;
+    padding: 40px 0; /* Padding vertikal di main, horizontal di wrapper */
+    
+    background-color: transparent;
+    background-image: url('../gambar/background.png');
+    
+    background-size: contain;
+    background-position: center;
+    background-repeat:repeat-y;
+
+    position: relative;
+    z-index: 0;
+    text-align: left; 
+}
+
+main::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.75);
+    z-index: -1;
+}
+
+.detail-content-wrapper {
+    max-width: 1100px;
+    margin: 0 auto; 
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    background-color: #fff;
+}
+
+.main-info-section {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid var(--border-color);
+    align-items: flex-start;
+    padding-top: 20px;
+    padding-left: 20px; 
+    padding-right: 20px;
+    /* --- TAMBAHKAN INI: Jarak antar item flex (gambar & teks) --- */
+    gap: 20px; /* Menambahkan jarak 20px antara image container dan text content */
+}
+
+.wisata-image-container {
+    flex: 0 0 45%;
+    position: relative;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+}
+
+.wisata-main-image {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+.btn-lihat-rute {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 12px 25px;
+    border-radius: 10px; 
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.btn-lihat-rute:hover {
+    background-color: #C40811;
+}
+
+.wisata-text-content {
+    flex: 1;
+    padding: 0px 0px 30px 20px; 
+    background-color: #fff;
+}
+
+.wisata-kategori-kecamatan {
+    font-size: 0.7em;
+    color: #666; /* Ini adalah warna teks alamat (misalnya "Borobudur, Kab. Magelang") */
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.wisata-kategori-kecamatan i {
+    /* UBAH INI: Ganti warna ikon agar sama dengan warna teks alamat */
+    color: #666; /* Mengambil warna dari parent .wisata-kategori-kecamatan */
+    /* Atau Anda bisa langsung setel ke warna yang sama: color: #666; */
+    /* Jika Anda ingin warna yang sedikit berbeda tetapi masih senada: color: #777; */
+}
+
+.wisata-title {
+    font-size: 2.2em;
+    color: var(--heading-color);
+    /* TAMBAHKAN INI: Menambahkan margin bawah agar ada jarak antara judul dan lokasi */
+    margin-bottom: 5px; /* Sesuaikan nilai ini jika terlalu jauh atau terlalu dekat */
+    line-height: 1.2;
+}
+
+.wisata-full-description {
+    font-size: 1em;
+    color: #555;
+    line-height: 1.8;
+    text-align: justify;
+}
+
+.additional-info-section {
+    /* Padding di sini yang akan mengatur ruang di sekitar tabel */
+    /* Gambar menunjukkan padding yang cukup merata di semua sisi */
+    padding: 20px 30px; /* Sesuaikan nilai ini, misalnya 20px atas/bawah, 30px kiri/kanan */
+    background-color: #fff;
+    /* Ini harus 10px jika Anda ingin padding kiri/kanan di dalam wrapper lebih kecil seperti gambar sebelumnya.
+       Namun, untuk tampilan tabel di gambar baru, 30px mungkin lebih baik di semua sisi untuk section ini.
+       Saya akan set ke 20px 30px untuk mencoba meniru gambar. */
+    /* padding-left: 10px; // Ini dihilangkan jika pakai padding: 20px 30px;
+    padding-right: 10px; // Ini dihilangkan jika pakai padding: 20px 30px; */
+}
+
+.wisata-info-table {
+    width: 100%;
+    border-collapse: collapse; /* Penting untuk tampilan tabel bersih tanpa spasi antar sel */
+    margin-top: 10px; /* Jarak antara judul tersembunyi/awal section dan tabel */
+}
+
+.wisata-info-table tr {
+    border-bottom: 1px solid var(--border-color); /* Garis abu-abu pemisah antar baris */
+}
+
+.wisata-info-table tr:last-child {
+    border-bottom: none; /* Hilangkan garis di baris terakhir */
+}
+
+.wisata-info-table td {
+    padding: 12px 0; /* Padding vertikal untuk setiap sel */
+    font-size: 0.95em;
+    vertical-align: top; /* Pastikan konten sel rata atas */
+}
+
+.wisata-info-table td:first-child {
+    width: 180px; /* Lebar tetap untuk kolom label (misal "Jam Operasional") */
+    color: #666; /* Warna teks label */
+    font-weight: 500;
+    padding-left: 0; /* Tidak ada padding kiri untuk kolom pertama */
+}
+
+.wisata-info-table td:last-child {
+    font-weight: 600; /* Membuat teks nilai lebih tebal */
+    color: var(--text-color-dark); /* Warna teks nilai */
+    padding-right: 0; /* Tidak ada padding kanan untuk kolom terakhir */
+}
+
+.btn-buka-website {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 0.9em;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+    
+    /* --- UBAH INI --- */
+    display: inline-block;
+    align-items: center; /* Pusatkan ikon dan teks secara vertikal */
+
+    border: none;
+}
+
+/* --- memberi jarak pada icon --- */
+.btn-buka-website i { /* Lebih spesifik: ikon di dalam .btn-buka-website */
+    margin-right: 8px; /* Jarak 8px di kanan ikon */
+}
+
+.btn-buka-website:hover {
+    background-color: var(--hover-color);
+}
+
+.fasilitas-grid {
+    display: flex;
+    flex-wrap: wrap; /* Penting agar item fasilitas bisa wrap ke baris baru */
+    gap: 10px; /* Jarak antar item fasilitas */
+    margin-top: 5px; /* Jarak dari label "Fasilitas" */
+}
+
+.fasilitas-item {
+    background-color: #f0f0f0; /* Latar belakang abu-abu terang */
+    border: 1px solid #ddd; /* Border tipis */
+    padding: 8px 15px;
+    border-radius: 5px;
+    display: inline-flex; /* Agar ikon dan teks sejajar */
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9em;
+    color: #555;
+    white-space: nowrap; /* Mencegah teks fasilitas pecah baris */
+}
+
+.fasilitas-item i.fa-check {
+    color: #28a745; /* Warna hijau untuk ikon centang */
+    font-size: 0.8em;
+}
+
+/* FOOTER Styling (copied from your provided CSS, ensures consistency) */
+.footer {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 20px 40px;
+    font-size: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 5;
+    min-height: var(--footer-height); 
+}
+
+.footer > div:first-child {
+    text-align: left;
+}
+
+.footer > div:last-child {
+    text-align: right;
+}
+
+
+/* =============================================================================
+ * MEDIA QUERIES UNTUK RESPONSIVITAS
+ * =============================================================================
+ */
+
+@media (max-width: 900px) {
+    .main-info-section {
+        flex-direction: column;
+        align-items: center;
+        padding-top: 20px;
+        padding-left: 10px; 
+        padding-right: 10px;
+        /* Di mode kolom, gap akan menjadi vertikal, jadi mungkin tidak diperlukan.
+           Atau bisa diatur ulang menjadi gap-row jika perlu jarak vertikal antar item. */
+        gap: 0px; /* Setel ulang gap untuk tampilan kolom agar tidak ada jarak horizontal yang aneh */
+    }
+
+    .wisata-image-container {
+        flex: none;
+        width: 100%;
+        padding: 0;
+    }
+
+    .btn-lihat-rute {
+        width: 100%; 
+        border-radius: 10px;
+    }
+
+    .wisata-text-content {
+        padding: 20px 0 30px 0;
+    }
+
+    .additional-info-section {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    /* ... sisa media query 900px ... */
+}
+
+
+@media (max-width: 768px) {
+    /* --- UBAH INI: Untuk mobile, sesuaikan margin detail-content-wrapper --- */
+    .detail-content-wrapper {
+        margin: 15px 10px; /* Margin vertikal 15px, horizontal 10px */
+        border-radius: 5px;
+    }
+    /* ... sisa media query 768px ... */
+    .wisata-text-content {
+        padding: 15px 0 20px 0;
+    }
+
+    .hamburger-menu {
+        display: block;
+    }
+
+    .header nav {
+        display: none;
+    }
+
+    .logo-text p {
+        font-size: 0.9em;
+    }
+
+    .logo {
+        height: 40px;
+        margin-right: 10px;
+    }
+
+    .main-nav, .login-button {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-text {
+        display: none;
+    }
+    .logo {
+        margin-right: 0;
+    }
+}
+
+.btn-info-website {
+    background-color: #f0f0f0; /* Warna abu-abu terang */
+    color: #555;
+    border: 1px solid #ccc;
+    border-radius: 50%; /* Membuatnya bulat */
+    width: 25px; /* Ukuran kecil */
+    height: 25px;
+    font-size: 0.8em;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 5px; /* Sedikit jarak dari N/A */
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.2s ease;
+}
+
+.btn-info-website:hover {
+    background-color: #e0e0e0;
+}
