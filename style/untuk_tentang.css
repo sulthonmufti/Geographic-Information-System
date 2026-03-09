@@ -1,0 +1,519 @@
+/**
+ * =============================================================================
+ * PENGATURAN FONT GLOBAL
+ * =============================================================================
+ */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/**
+ * =============================================================================
+ * VARIABEL CSS (CUSTOM PROPERTIES)
+ * =============================================================================
+ */
+:root {
+    --primary-color: #E50914; /* Merah asli */
+    --hover-color: #DF2929; /* Warna hover baru */
+    --text-color-light: #ffffff;
+    --text-color-dark: #333333;
+    --background-dark: #000000;
+    --link-hover-color: #ccc;
+    --header-bg-opacity: rgba(0, 0, 0, 0.9);
+    --header-height: 80px;
+    --footer-height: 60px;
+    --horizontal-padding: 20px;
+    --gray-bg-light: #f8f8f8;
+    --border-color: #e0e0e0;
+    --heading-color: #1a1a1a;
+    --section-gap: 20px;
+    --error-color: #dc3545;
+}
+
+/**
+ * =============================================================================
+ * RESET CSS DAN PENGATURAN DASAR BODY
+ * =============================================================================
+ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color-dark);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding-top: var(--header-height);
+    background-color: #fefefe;
+    overflow-x: hidden;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../gambar/background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.25;
+    z-index: -1;
+}
+
+/* =============================================================================
+ HEADER Styling - Dikembalikan ke versi awal
+ =============================================================================*/
+.main-header {
+    background-color: var(--header-bg-opacity);
+    color: var(--text-color-light);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    height: var(--header-height);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: background-color 0.3s ease;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--text-color-light);
+}
+
+.logo {
+    height: 50px;
+    margin-right: 15px;
+}
+
+.logo-text p {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.2;
+}
+
+.main-nav {
+    display: flex;
+    align-items: center;
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    margin-right: 30px;
+}
+
+.main-nav ul li {
+    margin-left: 30px;
+}
+
+.main-nav ul li a {
+    color: var(--text-color-light);
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 16px;
+    padding-bottom: 3px;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.main-nav ul li a:hover,
+.main-nav ul li a.active {
+    color: var(--hover-color);
+    transform: translateY(-2px);
+}
+
+.login-button {
+    background-color: var(--primary-color);
+    color: var(--text-color-light);
+    padding: 8px 16px;
+    border-radius: 15px;
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.login-button:hover {
+    transform: translateY(-2px);
+    background-color: var(--text-color-light);
+    color: var(--hover-color);
+    border-color: var(--hover-color);
+}
+
+.hamburger-menu {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.8em;
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1001;
+    color: var(--text-color-light);
+}
+
+.mobile-nav-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 999;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mobile-nav-overlay.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+.mobile-nav {
+    color: var(--text-color-light);
+    padding: 40px 20px;
+    width: 80%;
+    max-width: 400px;
+    border-radius: 10px;
+    transform: translateY(-20px);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mobile-nav-overlay.active .mobile-nav {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.mobile-nav ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 30px;
+    width: 100%;
+    text-align: center;
+}
+
+.mobile-nav ul li {
+    margin-bottom: 25px;
+}
+
+.mobile-nav ul li a {
+    color: var(--text-color-light);
+    text-decoration: none;
+    font-size: 1.6em;
+    font-weight: 600;
+    transition: color 0.3s ease;
+    display: block;
+}
+
+.mobile-nav ul li a:hover {
+    color: var(--link-hover-color);
+}
+
+.mobile-login-button {
+    background-color: var(--primary-color);
+    color: var(--text-color-light);
+    padding: 15px 30px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.4em;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.mobile-login-button:hover {
+    background-color: #c70811;
+}
+
+body.no-scroll {
+  overflow: hidden;
+}
+
+/* =============================================================================
+ FOOTER Styling - Versi awal
+ =============================================================================*/
+.footer {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 20px 40px;
+    font-size: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 5;
+    min-height: var(--footer-height);
+}
+
+.footer > div:first-child {
+    text-align: left;
+}
+
+.footer > div:last-child {
+    text-align: right;
+}
+
+/* Media queries header/footer */
+@media (max-width: 768px) {
+    .hamburger-menu { display: block; }
+    .header nav { display: none; }
+    .logo-text p { font-size: 0.9em; }
+    .logo { height: 40px; margin-right: 10px; }
+    .main-nav, .login-button { display: none; }
+    .footer { flex-direction: column; text-align: center; gap: 10px; }
+    .footer > div:first-child, .footer > div:last-child { text-align: center; }
+}
+
+@media (max-width: 480px) {
+    .logo-text { display: none; }
+    .logo { margin-right: 0; }
+}
+
+/* MAIN CONTENT */
+main {
+    flex-grow: 1;
+    padding: 60px 0;
+    position: relative;
+    z-index: 0;
+}
+
+section {
+    max-width: 1200px;
+    margin: 0 auto 60px;
+    padding: 40px var(--horizontal-padding);
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+.section-title, .section-title-alt {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 30px;
+    text-align: center;
+    width: 100%;
+}
+
+.tentang-hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.tentang-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--heading-color);
+}
+
+.tentang-intro {
+    font-size: 1.1rem;
+    margin-top: 20px;
+    color: #555;
+}
+
+/* MENAMBAHKAN UKURAN PADA GAMBAR HERO */
+.image-wrapper-right {
+    max-width: 500px;
+}
+
+.image-wrapper-right img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 20px;
+}
+
+
+/* VISI MISI */
+.visi-misi-grid {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    width: 100%;
+}
+
+.visi-box, .misi-box {
+    flex: 1;
+    background-color: #f8f8f8;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* FITUR */
+.features-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    width: 100%;
+}
+
+.feature-item {
+    flex: 1;
+    background-color: #f8f8f8;
+    text-align: center;
+    padding: 30px 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.feature-icon {
+    font-size: 2.5rem;
+    color: #4E4E4E; /* WARNA ICON DIUBAH */
+    margin-bottom: 15px;
+}
+
+/* MANFAAT */
+.manfaat-wrapper {
+    display: flex;
+    gap: 30px;
+    width: 100%;
+}
+
+.manfaat-item {
+    flex: 1;
+    background-color: #f8f8f8;
+    text-align: center;
+    padding: 30px 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.manfaat-icon {
+    font-size: 2.5rem;
+    color: #4E4E4E; /* WARNA ICON DIUBAH */
+    margin-bottom: 15px;
+}
+
+/* PENGEMBANG */
+.developer-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 30px;
+}
+
+.developer-info {
+    flex: 1;
+}
+
+.developer-image {
+    max-width: 250px;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.developer-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* =============================================================================
+ ANIMASI DAN HOVER
+ ============================================================================= */
+
+/* Efek Hover */
+.hover-effect:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+
+/* Efek Animasi Scroll */
+.fade-in,
+.fade-in-left,
+.fade-in-right {
+    opacity: 0;
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in {
+    transform: translateY(50px);
+}
+
+.fade-in-left {
+    transform: translateX(-50px);
+}
+
+.fade-in-right {
+    transform: translateX(50px);
+}
+
+.fade-in.visible,
+.fade-in-left.visible,
+.fade-in-right.visible {
+    opacity: 1;
+    transform: translate(0, 0);
+}
+
+/* =============================================================================
+ RESPONSIVE
+ ============================================================================= */
+@media (max-width: 992px) {
+    .tentang-hero,
+    .developer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    .features-wrapper,
+    .manfaat-wrapper,
+    .visi-misi-grid {
+        flex-direction: column;
+    }
+    .developer-info {
+        order: 2;
+    }
+    .developer-image {
+        max-width: 200px;
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    section {
+        padding: 30px 20px;
+        margin-bottom: 40px;
+    }
+    .developer-image {
+        max-width: 150px;
+    }
+}
