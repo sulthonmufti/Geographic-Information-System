@@ -1,0 +1,301 @@
+/* =============================================================================
+ Global Box-Sizing for consistent width/height calculations
+ =============================================================================*/
+*, *::before, *::after {
+    box-sizing: border-box; /* Ensures padding and border are included in the element's total width/height */
+}
+
+/* =============================================================================
+ Login Page Specific Styles
+ Mengadaptasi desain dari gambar yang diberikan
+ =============================================================================*/
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Menambahkan padding atas dan bawah untuk memberikan jarak dari header/footer */
+    padding: 40px 20px; /* Padding atas/bawah 40px, kiri/kanan 20px (sesuai sebelumnya) */
+    /* min-height perlu disesuaikan agar padding tidak memotong konten */
+    min-height: calc(100vh - var(--header-height) - var(--footer-height) - 80px); /* 80px = 40px top + 40px bottom padding */
+    background-color: transparent;
+    background-image: url('../gambar/background.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    position: relative;
+    z-index: 0;
+    margin: 0;
+}
+
+main::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.75);
+    z-index: -1;
+}
+
+.login-container {
+    display: flex;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    max-width: 800px;
+    width: 100%;
+    height: auto;
+    min-height: 450px;
+    gap: 0;
+    border: none;
+}
+
+.login-image-section {
+    flex: 0 0 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px;
+    /* background-color: #f0f0f0; */ /* Dihapus sesuai permintaan sebelumnya */
+    background-image: url('../gambar/image_login.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: var(--text-color-light);
+    text-align: center;
+    position: relative;
+    min-height: 450px;
+    border-right: none;
+}
+
+/* Overlay untuk teks agar lebih terbaca di atas gambar */
+.login-image-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.6));
+}
+
+.login-quote {
+    position: relative;
+    z-index: 1;
+    padding: 20px;
+    font-size: 1.0em;
+    font-weight: 500;
+    margin-top: auto;
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+
+.login-quote strong {
+    display: block;
+    margin-top: 10px;
+    font-size: 0.8em;
+    font-weight: 400;
+}
+
+.login-form-section {
+    flex: 0 0 60%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    border-left: none;
+}
+
+.login-form-section h2 {
+    font-size: 1.8em;
+    color: var(--heading-color);
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.login-form-section p {
+    font-size: 0.95em;
+    color: #666;
+    margin-bottom: 30px;
+    text-align: center;
+    line-height: 1.5;
+}
+
+.login-form {
+    width: 100%;
+    max-width: 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-field {
+    text-align: left;
+    position: relative;
+}
+
+.form-field label {
+    display: none;
+}
+
+.form-field input[type="text"],
+.form-field input[type="password"],
+.form-field input[type="email"] { /* Tambahkan type="email" di sini */
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1em;
+    color: var(--text-color-dark);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-field input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(var(--primary-color), 0.2);
+}
+
+.form-field input::placeholder {
+    color: #aaa;
+}
+
+.login-options-simple {
+    display: flex;
+    justify-content: flex-end; /* Arahkan link ke kanan */
+    font-size: 0.9em;
+    color: #555;
+    margin-top: -10px;
+}
+/* Untuk link di tengah pada validasi.php / ubah_sandi.php */
+.login-options-simple[style="text-align: center; margin-top: 15px;"] {
+    justify-content: center; /* Override untuk menengahkan */
+}
+
+
+.login-options-simple a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.login-options-simple a:hover {
+    text-decoration: underline;
+}
+
+.login-button-submit {
+    background-color: #6C63FF;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 100%;
+}
+
+.login-button-submit:hover {
+    background-color: #5b54d3;
+    transform: translateY(-2px);
+}
+
+.error-text {
+    color: var(--error-color);
+    font-size: 0.85em;
+    margin-top: 5px;
+    display: block;
+    text-align: left;
+    width: 100%;
+}
+
+.form-message {
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    font-weight: 500;
+    text-align: center;
+    width: 100%;
+    max-width: 320px;
+}
+
+.form-message.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.form-message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* Responsive adjustments for login page */
+@media (max-width: 768px) {
+    main {
+        padding: 20px; /* Kurangi padding di mobile */
+        min-height: calc(100vh - var(--header-height) - var(--footer-height) - 40px); /* Sesuaikan min-height */
+    }
+
+    .login-container {
+        flex-direction: column;
+        max-width: 400px;
+        gap: 0;
+    }
+
+    .login-image-section,
+    .login-form-section {
+        flex: 0 0 auto;
+        width: 100%;
+        border-right: none;
+        border-left: none;
+    }
+
+    .login-image-section {
+        min-height: 200px;
+        padding: 20px;
+    }
+
+    .login-quote {
+        font-size: 0.9em;
+        padding: 15px;
+    }
+
+    .login-quote strong {
+        font-size: 0.75em;
+    }
+
+    .login-form-section {
+        padding: 30px 25px;
+    }
+
+    .login-form {
+        max-width: 100%;
+    }
+
+    .form-message {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .login-container {
+        border-radius: 5px;
+    }
+    .login-form-section h2 {
+        font-size: 1.6em;
+    }
+    .login-form-section p {
+        font-size: 0.9em;
+        margin-bottom: 20px;
+    }
+}
