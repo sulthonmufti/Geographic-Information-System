@@ -1,0 +1,450 @@
+/* style/admin_dashboard.css */
+
+:root {
+    --primary-color: #6a0dad; /* Contoh ungu gelap */
+    --secondary-color: #8a2be2; /* Contoh ungu terang */
+    --text-color: #333;
+    --light-grey: #f5f6f8;
+    --medium-grey: #e9ecef;
+    --dark-grey: #6c757d;
+    --white: #fff;
+    --border-radius: 12px;
+    --box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* Sedikit lebih gelap dari sebelumnya */
+    --sidebar-width: 250px;
+    --header-height: 80px;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--light-grey); /* Latar belakang keseluruhan dashboard */
+    color: var(--text-color);
+    line-height: 1.6;
+    display: flex; /* Mengatur body sebagai flex container */
+    min-height: 100vh; /* Pastikan body mengambil tinggi penuh viewport */
+    overflow-x: hidden; /* Mencegah scroll horizontal yang tidak diinginkan */
+}
+
+/* Container utama untuk seluruh dashboard, flex untuk sidebar dan main content */
+.dashboard-wrapper {
+    display: flex;
+    width: 100%;
+}
+
+/* Sidebar Styling */
+.sidebar {
+    width: var(--sidebar-width);
+    min-width: var(--sidebar-width); /* Agar tidak menyusut */
+    background-color: var(--white);
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Menempatkan logout di bawah */
+    transition: width 0.3s ease;
+    overflow-y: auto; /* Jika konten sidebar melebihi tinggi */
+    position: sticky; /* Sidebar tetap di tempatnya saat scroll */
+    top: 0;
+    height: 100vh; /* Tinggi penuh */
+}
+
+.sidebar .logo-section {
+    padding: 0 20px 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid var(--medium-grey);
+    padding-bottom: 25px;
+    margin-bottom: 25px;
+}
+
+.sidebar .logo-section .logo-text p {
+    margin: 0;
+    font-weight: 600;
+    font-size: 1.1em;
+    color: var(--primary-color);
+}
+.sidebar .logo-section .logo-text p:last-child {
+    font-size: 0.8em;
+    color: var(--dark-grey);
+}
+
+.sidebar .logo-section img {
+    width: 40px;
+    height: 40px;
+}
+
+.sidebar nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar nav ul li a {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    border-left: 4px solid transparent;
+    transition: all 0.2s ease;
+    gap: 15px; /* Jarak antara ikon dan teks */
+}
+
+.sidebar nav ul li a i {
+    font-size: 1.1em;
+    color: var(--dark-grey);
+}
+
+.sidebar nav ul li a.active,
+.sidebar nav ul li a:hover {
+    background-color: #e6f7ff; /* Latar belakang hover/active yang lebih terang */
+    border-left-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.sidebar nav ul li a.active i,
+.sidebar nav ul li a:hover i {
+    color: var(--primary-color);
+}
+
+.sidebar .logout-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    color: #dc3545; /* Merah untuk logout */
+    border: none;
+    padding: 15px 20px;
+    margin-top: auto; /* Dorong ke bawah */
+    cursor: pointer;
+    font-weight: 600;
+    gap: 10px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.sidebar .logout-button:hover {
+    background-color: #ffebeb;
+    border-radius: 5px;
+}
+
+/* Main Content Area */
+.main-content {
+    flex-grow: 1; /* Mengisi sisa ruang */
+    padding: 20px 30px;
+    background-color: var(--light-grey);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Dashboard Header */
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    margin-bottom: 30px;
+    border-bottom: 1px solid var(--medium-grey);
+}
+
+.dashboard-header h1 {
+    margin: 0;
+    font-size: 1.8em;
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+.dashboard-header .user-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.dashboard-header .user-info span {
+    font-weight: 500;
+    color: var(--dark-grey);
+}
+
+.dashboard-header .user-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: var(--secondary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    font-weight: 700;
+    font-size: 1.1em;
+}
+
+/* Info Cards / Summary Cards */
+.info-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+.card {
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 120px; /* Tinggi minimum agar konsisten */
+    transition: transform 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card .card-title {
+    font-size: 0.9em;
+    color: var(--dark-grey);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.card .card-value {
+    font-size: 2em;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.card .card-description {
+    font-size: 0.8em;
+    color: #666;
+    margin-top: 5px;
+}
+
+/* Activity Table Section */
+.activity-section {
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 30px;
+    margin-top: 20px; /* Jarak dari cards */
+    overflow-x: auto; /* Untuk responsivitas tabel */
+}
+
+.activity-section h3 {
+    margin-top: 0;
+    margin-bottom: 25px;
+    font-size: 1.5em;
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+/* Table Styling (dari untuk_admin.css, digabungkan ke sini atau dipisah) */
+.data-table {
+    width: 100%;
+    border-collapse: separate; /* Untuk radius border */
+    border-spacing: 0; /* Menghilangkan spasi antar cell */
+    margin-top: 20px;
+    font-size: 0.9em;
+    min-width: 900px; /* Agar tabel tidak terlalu kecil pada layar sedang */
+}
+
+.data-table thead th {
+    background-color: #f8f9fa; /* Light grey header background */
+    color: var(--dark-grey); /* Darker grey text for headers */
+    padding: 15px 20px; /* Padding lebih besar */
+    text-align: left;
+    border-bottom: 1px solid var(--medium-grey);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    position: sticky; /* Header tetap saat scroll horizontal */
+    top: 0;
+    z-index: 10;
+}
+
+.data-table tbody td {
+    padding: 12px 20px;
+    border-bottom: 1px solid #e9ecef; /* Lighter border for rows */
+    color: var(--text-color); /* Dark text for data */
+    vertical-align: middle;
+}
+
+.data-table tbody tr:last-child td {
+    border-bottom: none; /* Hilangkan border bawah pada baris terakhir */
+}
+
+.data-table tbody tr:hover {
+    background-color: #f1f1f1; /* Light hover effect */
+}
+
+/* Status Badges */
+.status-badge {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px; /* Lebih bulat */
+    font-weight: 600;
+    font-size: 0.75em;
+    text-transform: uppercase;
+    color: var(--white);
+    letter-spacing: 0.03em;
+}
+
+.status-badge.sukses {
+    background-color: #28a745; /* Green for success */
+}
+
+.status-badge.gagal {
+    background-color: #dc3545; /* Red for failed */
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .sidebar {
+        width: 80px; /* Perkecil sidebar */
+        min-width: 80px;
+        padding-top: 10px;
+    }
+    .sidebar .logo-section,
+    .sidebar .logout-button {
+        padding-left: 10px;
+        padding-right: 10px;
+        justify-content: center; /* Tengahkan logo/logout */
+    }
+    .sidebar .logo-section .logo-text,
+    .sidebar nav ul li a span,
+    .sidebar .logout-button span {
+        display: none; /* Sembunyikan teks */
+    }
+    .sidebar nav ul li a {
+        justify-content: center;
+        padding: 12px 0;
+        border-left: none; /* Hilangkan border kiri saat ikon saja */
+    }
+    .sidebar nav ul li a.active {
+        background-color: #e6f7ff;
+    }
+    .sidebar nav ul li a:hover {
+        background-color: #e6f7ff;
+    }
+    .dashboard-header h1 {
+        font-size: 1.5em;
+    }
+    .info-cards {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 20px;
+    }
+    .activity-section {
+        padding: 20px;
+    }
+    .data-table thead th,
+    .data-table tbody td {
+        padding: 10px 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard-wrapper {
+        flex-direction: column; /* Sidebar di atas, konten di bawah */
+    }
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        border-bottom: 1px solid var(--medium-grey);
+    }
+    .sidebar .logo-section {
+        border-bottom: none;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+    }
+    .sidebar nav ul {
+        display: flex; /* Navigasi horizontal di mobile */
+        justify-content: center;
+        flex-wrap: wrap; /* Jika item terlalu banyak, bungkus */
+    }
+    .sidebar nav ul li {
+        margin: 0 5px;
+    }
+    .sidebar nav ul li a {
+        padding: 8px 15px;
+        border-left: none;
+        border-bottom: 3px solid transparent; /* Border bawah untuk active */
+    }
+    .sidebar nav ul li a.active {
+        border-bottom-color: var(--primary-color);
+        background-color: transparent;
+    }
+    .sidebar nav ul li a span {
+        display: inline; /* Tampilkan teks lagi di nav mobile */
+    }
+    .sidebar nav ul li a i {
+        display: none; /* Sembunyikan ikon di nav mobile */
+    }
+    .sidebar .logout-button {
+        display: none; /* Sembunyikan logout di sidebar mobile, bisa dipindah ke header */
+    }
+    .main-content {
+        padding: 15px;
+    }
+    .dashboard-header {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 20px;
+    }
+    .dashboard-header .user-info {
+        margin-top: 15px;
+    }
+    .activity-section {
+        padding: 15px;
+    }
+}
+
+/* Styling untuk mobile hamburger menu dan overlay */
+.hamburger-menu {
+    display: none; /* Sembunyikan secara default */
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    color: var(--dark-grey);
+    cursor: pointer;
+}
+
+.mobile-nav-overlay {
+    display: none; /* Sembunyikan secara default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    justify-content: flex-end; /* Atau center, tergantung desain mobile overlay */
+}
+
+.mobile-nav {
+    width: 70%; /* Lebar menu overlay */
+    background: var(--white);
+    padding: 20px;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+    transform: translateX(100%); /* Sembunyikan di luar layar */
+    transition: transform 0.3s ease-out;
+}
+
+.mobile-nav.active {
+    transform: translateX(0); /* Tampilkan menu */
+}
+
+/* Override header nav untuk mobile */
+@media (max-width: 768px) {
+    .main-header .main-nav {
+        display: none; /* Sembunyikan nav utama di mobile */
+    }
+    .main-header .hamburger-menu {
+        display: block; /* Tampilkan hamburger di mobile */
+    }
+}

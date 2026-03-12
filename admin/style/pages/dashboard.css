@@ -1,0 +1,84 @@
+/* admin/style/pages/dashboard.css */
+
+/* Konten di dalam dynamic-content-area (Dashboard Specific) */
+.info-cards {
+    background-color: var(--white); /* Gunakan variabel dari admin_dashboard.css */
+    border-radius: var(--border-radius); /* Gunakan variabel dari admin_dashboard.css */
+    box-shadow: var(--box-shadow); /* Gunakan variabel dari admin_dashboard.css */
+    padding: 25px;
+    margin-bottom: 25px;
+}
+
+/* Info Cards / Summary Cards */
+.info-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+}
+
+.card {
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 120px;
+    transition: transform 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card .card-title {
+    font-size: 0.9em;
+    color: var(--dark-grey);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.card .card-value {
+    font-size: 2em;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.card .card-description {
+    font-size: 0.8em;
+    color: #666;
+    margin-top: 5px;
+}
+
+/* Responsive Dashboard Specific */
+@media (max-width: 992px) {
+    .info-cards {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 20px;
+    }
+}
+
+/*========================================
+/* ... CSS untuk Chart... */
+/*========================================*/
+
+.chart-section {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-top: 20px; /* Jarak dari section di atasnya */
+}
+
+.chart-section h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* .chart-container {
+    /* Tinggi dan lebar diatur langsung di HTML untuk fleksibilitas. */
+    /* Anda bisa menambahkan padding atau border di sini jika mau. 
+} */
