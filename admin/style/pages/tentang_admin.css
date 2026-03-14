@@ -1,0 +1,179 @@
+.tentang-admin-section {
+    padding: 30px;
+    max-width: 920px;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.admin-info-container {
+    display: flex;
+    align-items: center;
+    gap: 30px; /* Jarak antara gambar dan informasi admin */
+}
+
+.admin-image img {
+    height: 180px; /* Sesuaikan tinggi gambar dengan tinggi tabel */
+    width: 180px;  /* Pastikan lebar gambar sesuai dengan tinggi untuk menjaga rasio 1:1 */
+    border-radius: 8px;
+    object-fit: cover; /* Menjaga rasio gambar dan menyesuaikan ukuran */
+}
+
+.admin-details {
+    flex: 1;
+    color: #333;
+}
+
+.tentang-admin-section h2 {
+    text-align: left; /* Judul lebih ke kiri sesuai desain */
+    color: #e50914;
+    margin-bottom: 20px;
+}
+
+.tentang-admin-section p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.tentang-admin-section ul {
+    padding-left: 20px;
+    margin-bottom: 20px;
+}
+
+.tentang-admin-section li {
+    margin-bottom: 10px;
+    color: #444;
+}
+
+.admin-data-table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+.admin-data-table th,
+.admin-data-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.admin-data-table th {
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+.admin-data-table td {
+    color: #555;
+}
+
+.btn-edit-profile {
+    display: inline-block;
+    background-color: #6c63ff; /* Sesuaikan dengan warna tombol pada desain */
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.btn-edit-profile:hover {
+    background-color: #5a54e6; /* Hover effect untuk tombol */
+}
+
+.error-message {
+    color: red;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/*====================
+/* edit admin
+/*====================*/
+.edit-profile-section {
+    padding: 30px;
+    max-width: 920px;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.btn-edit-profile {
+    display: inline-block;
+    background-color: #6c63ff;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    text-align: center;
+    font-weight: bold;
+    border: none;
+}
+
+.btn-edit-profile:hover {
+    background-color: #5a54e6;
+}
+
+/* Style for text and email inputs */
+.admin-data-table input[type="text"],
+.admin-data-table input[type="email"],
+.admin-data-table input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Style for select box */
+.role-select {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #555;
+}
+
+/* Styling for the submit button */
+.btn-edit-profile {
+    display: inline-block;
+    background-color: #6c63ff;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.btn-edit-profile:hover {
+    background-color: #5a54e6;
+}
+
+/* Style untuk tombol Lihat Daftar Admin*/
+.btn-view-admin {
+    display: inline-block;
+    background-color: #6c63ff; /* Warna yang sama */
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    text-align: center;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px; /* Jarak antara dua tombol */
+}
+
+.btn-view-admin:hover {
+    background-color: #5a54e6; /* Efek hover yang sama */
+}

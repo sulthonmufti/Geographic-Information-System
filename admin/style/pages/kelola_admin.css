@@ -1,0 +1,155 @@
+/* style/pages/kelola_admin.css */
+
+/* Gaya untuk tabel Kelola Admin */
+.kelola-admin-table-wrapper {
+    max-width: 1000px; /* Sesuaikan lebar maksimum */
+    overflow-x: auto;
+    margin-top: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+}
+
+.kelola-admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9em;
+    min-width: 600px; /* Sesuaikan min-width sesuai kebutuhan tabel admin */
+}
+
+.kelola-admin-table th,
+.kelola-admin-table td {
+    padding: 10px 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    vertical-align: middle; /* Menjaga teks di tengah secara vertikal */
+}
+
+.kelola-admin-table th {
+    background-color: #e9ecef;
+    font-weight: 600;
+    color: #495057;
+    text-transform: uppercase;
+}
+
+.kelola-admin-table tbody tr:hover {
+    background-color: #f2f2f2;
+}
+
+/* Mengatur lebar kolom tabel admin */
+.kelola-admin-table th:nth-child(1), /* No. */
+.kelola-admin-table td:nth-child(1) {
+    width: 5%;
+    min-width: 40px;
+    text-align: center;
+}
+.kelola-admin-table th:nth-child(2), /* Username */
+.kelola-admin-table td:nth-child(2) {
+    width: 15%;
+    min-width: 120px;
+}
+.kelola-admin-table th:nth-child(3), /* Nama Lengkap */
+.kelola-admin-table td:nth-child(3) {
+    width: 25%;
+    min-width: 150px;
+}
+.kelola-admin-table th:nth-child(4), /* Email */
+.kelola-admin-table td:nth-child(4) {
+    width: 25%;
+    min-width: 150px;
+}
+.kelola-admin-table th:nth-child(5), /* Role */
+.kelola-admin-table td:nth-child(5) {
+    width: 10%;
+    min-width: 80px;
+    text-align: center;
+}
+.kelola-admin-table th:nth-child(6), /* Aksi */
+.kelola-admin-table td:nth-child(6) {
+    width: 20%;
+    min-width: 150px;
+    text-align: center;
+}
+
+/* Badge untuk Role */
+.role-badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.75em;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--white);
+    display: inline-block;
+    letter-spacing: 0.03em;
+}
+
+.role-badge.master-role {
+    background-color: var(--primary-color);
+}
+
+.role-badge.regular-role {
+    background-color: #6c757d; /* Abu-abu */
+}
+
+/* CSS khusus untuk tombol aksi (disesuaikan dari kelola_fasilitas.css) */
+/* class .btn-action sudah global, tidak perlu didefinisikan ulang */
+/* cukup override jika ada kebutuhan khusus */
+.kelola-admin-table .edit-admin-btn {
+    background-color: #007bff; /* Biru */
+    color: white;
+}
+
+.kelola-admin-table .edit-admin-btn:hover {
+    background-color: #0056b3;
+}
+
+.kelola-admin-table .delete-admin-btn {
+    background-color: #dc3545; /* Merah */
+    color: white;
+}
+
+.kelola-admin-table .delete-admin-btn:hover {
+    background-color: #c82333;
+}
+
+/* Responsiveness for kelola-admin-table (Mobile View) */
+@media (max-width: 768px) {
+    .kelola-admin-table thead {
+        display: none;
+    }
+    .kelola-admin-table, .kelola-admin-table tbody, .kelola-admin-table tr, .kelola-admin-table td {
+        display: block;
+        width: 100%;
+    }
+    .kelola-admin-table tr {
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    .kelola-admin-table td {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+        white-space: normal;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+    .kelola-admin-table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 15px;
+        width: calc(50% - 30px);
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: bold;
+        color: #555;
+    }
+    .kelola-admin-table td:nth-of-type(5) {
+        text-align: center; /* Override text-align untuk badge role */
+    }
+}
