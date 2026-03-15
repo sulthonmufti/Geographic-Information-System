@@ -1,0 +1,405 @@
+/* style/pages/aktivitas_login.css */
+
+.activity-section {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f8f9fa; /* Warna latar belakang yang lebih terang untuk bagian ini */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    max-width: 920px;
+}
+
+.activity-section h3 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    text-align: center; /* Opsional: Pusatkan judul */
+}
+
+.data-table-container-aktivitas { 
+    overflow-x: auto; 
+    margin-top: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    padding: 20px; 
+}
+
+.data-table-aktivitas { 
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9em;
+    min-width: 600px;
+}
+
+.data-table-aktivitas th, .data-table-aktivitas td { /* Ubah class ini */
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.data-table-aktivitas th { /* Ubah class ini */
+    background-color: #e9ecef;
+    font-weight: 600;
+    color: #495057;
+    text-transform: uppercase;
+}
+
+.data-table-aktivitas tbody tr:hover { /* Ubah class ini */
+    background-color: #f2f2f2;
+}
+
+.status-badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.75em;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--white);
+    display: inline-block; /* Agar padding dan border radius bekerja dengan baik */
+    letter-spacing: 0.03em;
+}
+
+.status-badge.sukses {
+    background-color: #28a745; /* Green */
+}
+
+.status-badge.gagal {
+    background-color: var(--primary-color); /* Red */
+    color: var(--white);
+}
+
+/*=====================================
+/* Gaya untuk Pagination */
+/*=====================================*/
+.pagination {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px; /* Jarak antar tombol/angka */
+    flex-wrap: wrap; /* Pastikan pagination rapi di layar kecil */
+}
+
+.pagination-link {
+    display: inline-block;
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #333;
+    background-color: #fff;
+    transition: all 0.2s ease;
+    min-width: 40px; /* Lebar minimum untuk tombol */
+    text-align: center;
+}
+
+.pagination-link:hover {
+    background-color: #f0f0f0;
+    border-color: #aaa;
+}
+
+.pagination-link.active {
+    background-color: var(--primary-color); /* Sesuaikan dengan warna tema Anda */
+    color: var(--white);
+    border-color: var(--primary-color);
+    font-weight: bold;
+    pointer-events: none; /* Nonaktifkan klik pada halaman aktif */
+}
+
+.pagination span {
+    padding: 10px 5px;
+    color: #777;
+}
+
+
+/* Responsiveness for tables (Mobile View) */
+@media (max-width: 768px) {
+    .data-table-aktivitas thead { /* Ubah class ini */
+        display: none;
+    }
+    .data-table-aktivitas, .data-table-aktivitas tbody, .data-table-aktivitas tr, .data-table-aktivitas td { /* Ubah class ini */
+        display: block;
+        width: 100%;
+    }
+    .data-table-aktivitas tr { /* Ubah class ini */
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    .data-table-aktivitas td { /* Ubah class ini */
+        text-align: right; 
+        padding-left: 50%;
+        position: relative;
+    }
+    .data-table-aktivitas td::before { /* Ubah class ini */
+        content: attr(data-label);
+        position: absolute;
+        left: 15px;
+        width: calc(50% - 30px); 
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: bold;
+        color: #555;
+    }
+}
+
+/* Responsif untuk pagination jika diperlukan */
+@media (max-width: 480px) {
+    .pagination {
+        gap: 5px;
+        padding: 0 10px;
+    }
+    .pagination-link {
+        padding: 8px 12px;
+    }
+}
+
+.delete-btn-icon {
+    /* background: none;
+    border: none;
+    cursor: pointer;
+    color: #e50914;
+    font-size: 1rem; */
+
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 6px 8px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.delete-btn-icon:hover {
+    color: var(--primary-color);
+    background-color: white;
+    border-radius: 20px;
+}
+
+/*========================================================*/
+/* Tambahkan gaya untuk action-bar dan search-form */
+/*========================================================*/
+.action-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.search-form-container {
+    flex-grow: 1;
+    max-width: 500px;
+}
+
+.search-form {
+    display: flex;
+    gap: 8px;
+}
+
+.search-form input[type="text"] {
+    flex-grow: 1;
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 0.9em;
+    min-width: 150px;
+}
+
+.btn-action.search-btn {
+    background-color: #007bff;
+}
+
+.btn-action.search-btn:hover {
+    background-color: #0056b3;
+}
+
+.btn-action.reset-btn {
+    background-color: #6c757d;
+}
+
+.btn-action.reset-btn:hover {
+    background-color: #5a6268;
+}
+
+/* Gaya untuk tabel Kelola Wisata */
+
+.kelola-wisata-table-wrapper {
+    max-width: 920px; /* Tetap sama atau sesuaikan jika tabel keseluruhan terlalu lebar */
+    overflow-x: auto;
+    margin-top: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+}
+
+.kelola-wisata-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85em; /* Sedikit perkecil font size agar lebih banyak konten muat */
+    /* Min-width total tabel. Sekarang ada 13 kolom, jadi perlu lebih lebar */
+    min-width: 1200px; /* Diperkirakan, Anda mungkin perlu menyesuaikan nilai ini */
+}
+
+.kelola-wisata-table th,
+.kelola-wisata-table td {
+    padding: 8px 10px; /* Sedikit perkecil padding */
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    vertical-align: top;
+}
+
+.kelola-wisata-table th {
+    background-color: #e9ecef;
+    font-weight: 600;
+    color: #495057;
+    text-transform: uppercase;
+}
+
+.kelola-wisata-table tbody tr:hover {
+    background-color: #f2f2f2;
+}
+
+/* Gaya untuk Thumbnail Gambar */
+.wisata-gambar-thumbnail {
+    width: 60px; /* Perkecil sedikit */
+    height: 45px; /* Perkecil sedikit */
+    object-fit: cover;
+    border-radius: 4px;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Mengatur lebar FIX untuk setiap kolom (Total 13 Kolom) */
+/* Distribusi ulang persentase agar total 100% dan min-width sesuai */
+
+.kelola-wisata-table th:nth-child(1), /* No. */
+.kelola-wisata-table td:nth-child(1) {
+    width: 3%;
+    min-width: 30px;
+    text-align: center;
+}
+.kelola-wisata-table th:nth-child(2), /* Nama Wisata */
+.kelola-wisata-table td:nth-child(2) {
+    width: 12%;
+    min-width: 100px;
+}
+.kelola-wisata-table th:nth-child(3), /* Latitude, Longitude */
+.kelola-wisata-table td:nth-child(3) {
+    width: 9%;
+    min-width: 80px;
+}
+.kelola-wisata-table th:nth-child(4), /* Alamat */
+.kelola-wisata-table td:nth-child(4) {
+    width: 12%;
+    min-width: 100px;
+}
+.kelola-wisata-table th:nth-child(5), /* Jam Operasional */
+.kelola-wisata-table td:nth-child(5) {
+    width: 8%;
+    min-width: 70px;
+}
+.kelola-wisata-table th:nth-child(6), /* Harga Tiket */
+.kelola-wisata-table td:nth-child(6) {
+    width: 7%;
+    min-width: 60px;
+}
+.kelola-wisata-table th:nth-child(7), /* Kontak */
+.kelola-wisata-table td:nth-child(7) {
+    width: 8%;
+    min-width: 70px;
+}
+.kelola-wisata-table th:nth-child(8), /* Website */
+.kelola-wisata-table td:nth-child(8) {
+    width: 15%; /* Tetap lebih besar untuk URL */
+    min-width: 150px;
+    word-break: break-all;
+}
+.kelola-wisata-table td:nth-child(8) a {
+    color: inherit;
+    text-decoration: none;
+}
+.kelola-wisata-table td:nth-child(8) a:hover {
+    color: var(--primary-color);
+}
+.kelola-wisata-table th:nth-child(9), /* Gambar */
+.kelola-wisata-table td:nth-child(9) {
+    width: 6%;
+    min-width: 60px;
+    text-align: center;
+}
+.kelola-wisata-table th:nth-child(10), /* Kategori */
+.kelola-wisata-table td:nth-child(10) {
+    width: 7%;
+    min-width: 60px;
+}
+.kelola-wisata-table th:nth-child(11), /* Kecamatan */
+.kelola-wisata-table td:nth-child(11) {
+    width: 7%;
+    min-width: 60px;
+}
+.kelola-wisata-table th:nth-child(12), /* Fasilitas */
+.kelola-wisata-table td:nth-child(12) {
+    width: 10%;
+    min-width: 80px;
+}
+.kelola-wisata-table th:nth-child(13), /* Aksi */
+.kelola-wisata-table td:nth-child(13) {
+    width: 6%;
+    min-width: 60px;
+    text-align: center;
+}
+
+/* Penyesuaian responsif jika diperlukan */
+@media (max-width: 768px) {
+    .action-bar {
+        flex-direction: column; /* Ubah tata letak menjadi kolom di mobile */
+        align-items: flex-start; /* Rata kiri */
+    }
+    .search-form-container {
+        width: 100%; /* Ambil lebar penuh */
+        max-width: none; /* Hapus batasan max-width */
+    }
+    .search-form {
+        width: 100%;
+        flex-wrap: wrap; /* Pastikan tombol dan input melipat jika terlalu panjang */
+    }
+    .search-form input[type="text"] {
+        flex-basis: 100%; /* Input mengambil 100% lebar */
+        margin-bottom: 8px; /* Jarak bawah input */
+    }
+    .search-form .btn-action {
+        flex-basis: calc(50% - 4px); /* Tombol mengambil sekitar setengah lebar */
+        justify-content: center; /* Pusatkan ikon/teks di tombol */
+    }
+    .kelola-wisata-table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10px; /* Sesuaikan padding-left */
+        width: calc(50% - 20px); /* Sesuaikan lebar label */
+        padding-right: 5px; /* Sesuaikan padding */
+        white-space: nowrap;
+        text-align: left;
+        font-weight: bold;
+        color: #555;
+    }
+    .kelola-wisata-table td {
+        padding-left: 50%; /* Sesuaikan padding-left agar tidak tumpang tindih */
+    }
+}
+
+.data-table-aktivitas td:nth-child(3), /* Username Dicoba */
+.data-table-aktivitas td:nth-child(4)  /* Password Dicoba */ {
+    padding-left: 15px;  /* Sesuaikan padding kiri agar lebih konsisten */
+    padding-right: 15px; /* Sesuaikan padding kanan */
+    text-align: left;
+    width: 30%;
+    border-bottom: 1px solid #ddd;
+}
