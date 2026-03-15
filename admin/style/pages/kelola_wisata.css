@@ -1,0 +1,219 @@
+/* style/pages/kelola_wisata.css */
+
+/* CSS khusus untuk tombol aksi */
+.btn-action {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.85em;
+    margin-right: 5px;
+    transition: background-color 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+.btn-action:hover {
+    background-color: var(--secondary-color);
+}
+.btn-action.edit-btn {
+    background-color: #007bff;
+}
+.btn-action.edit-btn:hover {
+    background-color: #0069d9;
+}
+.btn-action.delete-btn {
+    background-color: #dc3545; /* Merah */
+}
+.btn-action.delete-btn:hover {
+    background-color: #c82333;
+}
+.btn-action.add-btn {
+    background-color: #28a745; /* Hijau */
+}
+.btn-action.add-btn:hover {
+    background-color: #218838;
+}
+
+/* Gaya untuk tabel Kelola Wisata */
+
+.kelola-wisata-table-wrapper {
+    max-width: 920px; /* Lebar maksimum yang Anda inginkan */
+    overflow-x: auto; /* Memungkinkan scrolling horizontal jika konten melebihi max-width */
+    margin-top: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+}
+
+.kelola-wisata-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9em;
+    min-width: 900px; /* Pertahankan atau sesuaikan jika tabel masih terlalu lebar/sempit */
+}
+
+.kelola-wisata-table th,
+.kelola-wisata-table td {
+    padding: 10px 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    word-wrap: break-word; /* Memastikan kata panjang akan melipat */
+    overflow-wrap: break-word; /* Alternatif untuk word-wrap */
+    vertical-align: top;
+}
+
+.kelola-wisata-table th {
+    background-color: #e9ecef;
+    font-weight: 600;
+    color: #495057;
+    text-transform: uppercase;
+}
+
+.kelola-wisata-table tbody tr:hover {
+    background-color: #f2f2f2;
+}
+
+/* Gaya untuk Thumbnail Gambar */
+.wisata-gambar-thumbnail {
+    width: 70px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 4px;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Mengatur lebar FIX untuk setiap kolom agar sama dan memungkinkan teks melipat */
+.kelola-wisata-table th:nth-child(1), /* No. */
+.kelola-wisata-table td:nth-child(1) {
+    width: 5%;
+    min-width: 40px;
+    text-align: center;
+}
+.kelola-wisata-table th:nth-child(2), /* Nama Wisata */
+.kelola-wisata-table td:nth-child(2) {
+    width: 15%;
+    min-width: 120px;
+}
+.kelola-wisata-table th:nth-child(3), /* Latitude, Longitude */
+.kelola-wisata-table td:nth-child(3) {
+    width: 10%;
+    min-width: 90px;
+}
+.kelola-wisata-table th:nth-child(4), /* Alamat */
+.kelola-wisata-table td:nth-child(4) {
+    width: 15%;
+    min-width: 120px;
+}
+.kelola-wisata-table th:nth-child(5), /* Jam Operasional */
+.kelola-wisata-table td:nth-child(5) {
+    width: 10%;
+    min-width: 80px;
+}
+.kelola-wisata-table th:nth-child(6), /* Harga Tiket */
+.kelola-wisata-table td:nth-child(6) {
+    width: 8%;
+    min-width: 70px;
+}
+.kelola-wisata-table th:nth-child(7), /* Kontak */
+.kelola-wisata-table td:nth-child(7) {
+    width: 10%;
+    min-width: 90px;
+}
+.kelola-wisata-table th:nth-child(8), /* Website */
+.kelola-wisata-table td:nth-child(8) {
+    width: 32%; /* DIUBAH: Ditingkatkan 4x dari 8% */
+    min-width: 320px; /* DIUBAH: Ditingkatkan 4x dari 80px */
+    word-break: break-all;
+}
+.kelola-wisata-table th:nth-child(9), /* Gambar */
+.kelola-wisata-table td:nth-child(9) {
+    width: 7%;
+    min-width: 70px;
+    text-align: center;
+}
+.kelola-wisata-table th:nth-child(10), /* Aksi */
+.kelola-wisata-table td:nth-child(10) {
+    width: 2%; /* DIUBAH: Dikurangi untuk menyeimbangkan sisa lebar */
+    min-width: 60px; /* Minimal agar tombol tidak terlalu kecil */
+    text-align: center;
+}
+
+
+/* Status Badge (jika ada) */
+.status-badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.75em;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--white);
+    display: inline-block;
+    letter-spacing: 0.03em;
+}
+
+.status-badge.sukses {
+    background-color: #28a745; /* Green */
+}
+
+.status-badge.gagal {
+    background-color: var(--primary-color); /* Red */
+    color: var(--white);
+}
+
+.kelola-wisata-table td:nth-child(8) a {
+    color: inherit; /* Mewarisi warna teks dari parent (<td>) */
+    text-decoration: none; /* Menghilangkan garis bawah link (opsional, bisa dihapus jika ingin tetap ada) */
+}
+
+/* Responsiveness for kelola-wisata-table (Mobile View) */
+@media (max-width: 768px) {
+    .kelola-wisata-table thead {
+        display: none;
+    }
+    .kelola-wisata-table, .kelola-wisata-table tbody, .kelola-wisata-table tr, .kelola-wisata-table td {
+        display: block;
+        width: 100%;
+    }
+    .kelola-wisata-table tr {
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    .kelola-wisata-table td {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+        white-space: normal;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+    .kelola-wisata-table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 15px;
+        width: calc(50% - 30px);
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: bold;
+        color: #555;
+    }
+    /* Sembunyikan gambar thumbnail di mobile untuk menghemat ruang jika terlalu banyak */
+    .kelola-wisata-table td[data-label="Gambar"] .wisata-gambar-thumbnail {
+        display: none;
+    }
+    /* Teks pengganti jika gambar tidak ada dan img disembunyikan */
+    .kelola-wisata-table td[data-label="Gambar"]:not(:has(.wisata-gambar-thumbnail)):empty::before {
+        content: attr(data-label) ": Tidak ada gambar";
+    }
+    /* Untuk mengatasi kasus di mana td[data-label="Gambar"] mungkin memiliki teks "Tidak ada gambar" dari PHP */
+    .kelola-wisata-table td[data-label="Gambar"] {
+        white-space: normal;
+    }
+}
