@@ -1,0 +1,170 @@
+/* style/pages/kelola_fasilitas.css */
+
+/* CSS khusus untuk tombol aksi */
+.btn-action {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.85em;
+    margin-right: 5px;
+    transition: background-color 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+.btn-action:hover {
+    background-color: var(--secondary-color);
+}
+.btn-action.delete-btn {
+    background-color: #dc3545; /* Merah */
+}
+.btn-action.delete-btn:hover {
+    background-color: #c82333;
+}
+.btn-action.add-btn {
+    background-color: #28a745; /* Hijau */
+}
+.btn-action.add-btn:hover {
+    background-color: #218838;
+}
+
+.kelola-fasilitas-table .btn-action {
+    /* ... properti lainnya ... */
+    margin-right: 5px;
+}
+
+.kelola-fasilitas-table .edit-btn {
+    background-color: #007bff; /* Warna biru */
+    color: white;
+}
+
+.kelola-fasilitas-table .edit-btn:hover {
+    background-color: #0056b3; /* Warna biru yang sedikit lebih gelap untuk hover */
+}
+
+.kelola-fasilitas-table .delete-btn {
+    background-color: #dc3545;
+    color: white;
+}
+
+.kelola-fasilitas-table .delete-btn:hover {
+    background-color: #c82333;
+}
+
+/* Gaya untuk tabel Kelola Fasilitas */
+.kelola-fasilitas-table-wrapper { /* Nama kelas disesuaikan */
+    max-width: 920px; /* Sesuaikan lebar maksimum sesuai kebutuhan tabel fasilitas */
+    overflow-x: auto;
+    margin-top: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+}
+
+.kelola-fasilitas-table { /* Nama kelas disesuaikan */
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9em;
+    min-width: 400px; /* Sesuaikan min-width sesuai kebutuhan tabel fasilitas */
+}
+
+.kelola-fasilitas-table th, /* Nama kelas disesuaikan */
+.kelola-fasilitas-table td { /* Nama kelas disesuaikan */
+    padding: 10px 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    vertical-align: top;
+}
+
+.kelola-fasilitas-table th { /* Nama kelas disesuaikan */
+    background-color: #e9ecef;
+    font-weight: 600;
+    color: #495057;
+    text-transform: uppercase;
+}
+
+.kelola-fasilitas-table tbody tr:hover { /* Nama kelas disesuaikan */
+    background-color: #f2f2f2;
+}
+
+/* Mengatur lebar FIX untuk setiap kolom tabel fasilitas */
+.kelola-fasilitas-table th:nth-child(1), /* No. */
+.kelola-fasilitas-table td:nth-child(1) {
+    width: 10%;
+    min-width: 40px;
+    text-align: center;
+}
+.kelola-fasilitas-table th:nth-child(2), /* Nama Fasilitas */
+.kelola-fasilitas-table td:nth-child(2) {
+    width: 60%;
+    min-width: 200px;
+}
+.kelola-fasilitas-table th:nth-child(3), /* Aksi */
+.kelola-fasilitas-table td:nth-child(3) {
+    width: 30%;
+    min-width: 120px;
+    text-align: center;
+}
+
+/* Status Badge (jika ada, tetap sama) */
+.status-badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.75em;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--white);
+    display: inline-block;
+    letter-spacing: 0.03em;
+}
+
+.status-badge.sukses {
+    background-color: #28a745; /* Green */
+}
+
+.status-badge.gagal {
+    background-color: var(--primary-color); /* Red */
+    color: var(--white);
+}
+
+/* Responsiveness for kelola-fasilitas-table (Mobile View) */
+@media (max-width: 768px) {
+    .kelola-fasilitas-table thead {
+        display: none;
+    }
+    .kelola-fasilitas-table, .kelola-fasilitas-table tbody, .kelola-fasilitas-table tr, .kelola-fasilitas-table td {
+        display: block;
+        width: 100%;
+    }
+    .kelola-fasilitas-table tr {
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    .kelola-fasilitas-table td {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+        white-space: normal;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+    .kelola-fasilitas-table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 15px;
+        width: calc(50% - 30px);
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: bold;
+        color: #555;
+    }
+}
