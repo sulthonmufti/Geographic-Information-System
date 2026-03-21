@@ -1,0 +1,107 @@
+/* Membuat activity-section tetap memiliki lebar maksimal 920px */
+.activity-section {
+    max-width: 920px;
+    margin: 20px auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Membuat data-table-container lebih lebar */
+.data-table-container {
+    overflow-x: auto;
+    width: 820px; /* Membiarkan data-table-container mengisi seluruh lebar */
+    margin: 0 auto;
+}
+
+/* Membuat data-table mengisi lebar container */
+.data-table {
+    width: 100%; /* Membiarkan tabel mengisi seluruh lebar container */
+    table-layout: auto; /* Untuk memungkinkan kolom menyesuaikan ukurannya */
+}
+
+/* Atur lebar kolom pesan untuk lebih lebar agar bisa dibaca jelas */
+.data-table th:nth-child(3),
+.data-table td:nth-child(3) {
+    width: 40%; /* Memperlebar kolom pesan */
+    min-width: 350px; /* Lebar minimal agar tetap terlihat jelas */
+    word-wrap: break-word; /* Menangani teks panjang agar terpecah */
+}
+
+/* Status Button Styling */
+.status-button {
+    border: none;
+    cursor: pointer;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.75em;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--white);
+    display: inline-block;
+    letter-spacing: 0.03em;
+}
+
+.status-Baru {
+    background-color: var(--primary-color);
+}
+
+.status-Dibaca {
+    background-color: #4274fc;
+}
+
+/*====================================*/
+/* Searching kelola_saran.php */
+/*====================================*/
+.search-form-container-saran {
+    flex-grow: 1;
+    max-width: 1000px;
+}
+
+.search-form-saran {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+}
+
+.search-form-saran input[type="text"] {
+    flex-grow: 1;
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 0.9em;
+    min-width: 150px;
+}
+
+.btn-action.search-btn {
+    background-color: #007bff;
+}
+
+.btn-action.search-btn:hover {
+    background-color: #0056b3;
+}
+
+.btn-action.reset-btn {
+    background-color: #6c757d;
+}
+
+.btn-action.reset-btn:hover {
+    background-color: #5a6268;
+}
+
+/* Styling untuk konfirmasi password yang baru muncul */
+#confirmPasswordRow {
+    display: none;  /* Awalnya disembunyikan */
+}
+
+#confirm_password_admin {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #555;
+    height: 40px;
+}
